@@ -13,7 +13,6 @@ public class Nagusia {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		//SISTEMAN SARTU
-	
 		Login login = new Login();
 		login.setVisible(true);
 

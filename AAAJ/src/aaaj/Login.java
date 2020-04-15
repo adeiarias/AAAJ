@@ -57,7 +57,7 @@ public class Login extends JFrame {
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean sartzean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});

@@ -23,6 +23,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -63,7 +65,7 @@ public class Garraiatzaile extends JFrame {
 					Garraiatzaile frame = new Garraiatzaile();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -106,7 +108,7 @@ public class Garraiatzaile extends JFrame {
 		
 	}catch (SQLException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+		JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 	}
 			
 		
@@ -166,7 +168,7 @@ public class Garraiatzaile extends JFrame {
 				
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 				}
 				
 				////////////////////////
@@ -238,7 +240,7 @@ public class Garraiatzaile extends JFrame {
 									modelo1.addRow(fila);
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
-									e.printStackTrace();
+									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 								}
 							}
 						});
@@ -310,7 +312,7 @@ public class Garraiatzaile extends JFrame {
 				
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 				}
 				
 				////////////////////////
@@ -430,7 +432,7 @@ public class Garraiatzaile extends JFrame {
 							try {
 								stm.executeUpdate(queryUpdate);
 							} catch (SQLException e) {
-								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 						
@@ -443,7 +445,7 @@ public class Garraiatzaile extends JFrame {
 							try {
 								stm.executeUpdate(queryUpdate);
 							} catch (SQLException e) {
-								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 						
@@ -455,7 +457,7 @@ public class Garraiatzaile extends JFrame {
 							try {
 								stm.executeUpdate(queryUpdate);
 							} catch (SQLException e) {
-								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 						
@@ -467,7 +469,7 @@ public class Garraiatzaile extends JFrame {
 							try {
 								stm.executeUpdate(queryUpdate);
 							} catch (SQLException e) {
-								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 					}

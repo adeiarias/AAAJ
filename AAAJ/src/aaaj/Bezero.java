@@ -26,6 +26,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -65,7 +67,7 @@ public class Bezero extends JFrame {
 					Bezero frame = new Bezero();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -109,7 +111,7 @@ public class Bezero extends JFrame {
 		
 	}catch (SQLException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+		JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 	}
 
 		JPanel panel = new JPanel();
@@ -344,7 +346,7 @@ public class Bezero extends JFrame {
 									modelo1.addRow(fila);
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
-									e.printStackTrace();
+									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 								}
 							}
 						});
@@ -416,7 +418,7 @@ public class Bezero extends JFrame {
 				
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 				}
 				
 				////////////////////////
@@ -512,7 +514,7 @@ public class Bezero extends JFrame {
 							try {
 								stm.executeUpdate(queryUpdate);
 							} catch (SQLException e) {
-								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 						
@@ -525,7 +527,7 @@ public class Bezero extends JFrame {
 							try {
 								stm.executeUpdate(queryUpdate);
 							} catch (SQLException e) {
-								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 						
@@ -537,7 +539,7 @@ public class Bezero extends JFrame {
 							try {
 								stm.executeUpdate(queryUpdate);
 							} catch (SQLException e) {
-								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 						
@@ -549,7 +551,7 @@ public class Bezero extends JFrame {
 							try {
 								stm.executeUpdate(queryUpdate);
 							} catch (SQLException e) {
-								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 					}
@@ -633,7 +635,7 @@ public class Bezero extends JFrame {
 				Login loginLogout = new Login();
 				loginLogout.setVisible(true);
 				setVisible(false);
-				try {konexioa.close();} catch (SQLException e) {e.printStackTrace();}
+				try {konexioa.close();} catch (SQLException e) {JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);}
 			}
 		});
 		panel_2.add(btnNewButton_7);
