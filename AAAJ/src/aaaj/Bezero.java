@@ -107,8 +107,7 @@ public class Bezero extends JFrame {
 		
 		
 	try {
-		//ResultSet rs = stm.executeQuery("select * from bezero where bkode=" + Login.loginID+";");
-		ResultSet rs = stm.executeQuery("select * from bezero where bkode=1;");
+		ResultSet rs = stm.executeQuery("select * from bezero where bkode=" + Login.loginID+";");
 		while (rs.next())
 		{
 			
@@ -138,6 +137,11 @@ public class Bezero extends JFrame {
 		
 		
 		modelo_0 = new DefaultTableModel() {					
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 		    public boolean isCellEditable(int row, int column) {
 		       //all cells false
@@ -152,6 +156,11 @@ public class Bezero extends JFrame {
 		panel_0_4.setLayout(new BorderLayout(0, 0));
 		
 		modelo0_1 = new DefaultTableModel(){					
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 		    public boolean isCellEditable(int row, int column) {
 		       //all cells false
@@ -499,11 +508,11 @@ public class Bezero extends JFrame {
 					
 
 					public void actionPerformed(ActionEvent arg0) {
-						// query. 	UPDATE `bezero` SET `ifz` = '00000001B' WHERE `bezero`.`bkode` = 1; 
 						String queryUpdate="";
 						
 						if (!textField_1.getText().equals(izena_datuak) ){
-							tlf_datuak=textField_1.getText();
+							izena_datuak=textField_1.getText();
+							izena_datuak=izena_datuak.toUpperCase();
 							lblNewLabel_1.setText(izena_datuak);
 							queryUpdate = "UPDATE `bezero` SET `izena` = "+ izena_datuak +" WHERE `bezero`.`bkode` = "+bkode_datuak+";";
 							
@@ -515,7 +524,8 @@ public class Bezero extends JFrame {
 						}
 						
 						if (!textField_2.getText().equals(helbidea_datuak) ){
-							tlf_datuak=textField_2.getText();
+							helbidea_datuak=textField_2.getText();
+							helbidea_datuak=helbidea_datuak.toUpperCase();
 							lblNewLabel_6.setText(helbidea_datuak);
 							queryUpdate = "UPDATE `bezero` SET `helbide` = "+ helbidea_datuak +" WHERE `bezero`.`bkode` = "+bkode_datuak+";";
 							
@@ -539,8 +549,8 @@ public class Bezero extends JFrame {
 						}
 						
 						if (!textField_4.getText().equals(gune_datuak) ){
-							tlf_datuak=textField_4.getText();
-							lblNewLabel_4.setText(gune_datuak);
+							gune_datuak=textField_4.getText();
+							lblNewLabel_4.setText("GUNE: "+gune_datuak);
 							queryUpdate = "UPDATE `bezero` SET `gune` = "+ gune_datuak +" WHERE `bezero`.`bkode` = "+bkode_datuak+";";
 							
 							try {

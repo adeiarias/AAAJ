@@ -13,9 +13,9 @@ import java.util.Date;
 
 public class Nagusia {
 	
-	static String zerbitzaria= "jdbc:mysql://localhost:3306/aaaj";
-	static String erabiltzailea= "root"; // mysql
-	static String pasahitza= ""; // mysql
+	static String zerbitzaria= "jdbc:mysql://remotemysql.com:3306/fOZj7JO0X4";
+	static String erabiltzailea= "fOZj7JO0X4"; // mysql
+	static String pasahitza= "eHiAgxvLE4"; // mysql
 	
 	static String sistemakoErab;
 	static int sistemakoID;

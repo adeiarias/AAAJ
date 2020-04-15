@@ -420,11 +420,11 @@ public class Garraiatzaile extends JFrame {
 					
 
 					public void actionPerformed(ActionEvent arg0) {
-						// query. 	UPDATE `bezero` SET `ifz` = '00000001B' WHERE `bezero`.`bkode` = 1; 
 						String queryUpdate="";
 						
 						if (!textField_1.getText().equals(izena_datuak) ){
-							tlf_datuak=textField_1.getText();
+							izena_datuak=textField_1.getText();
+							izena_datuak=izena_datuak.toUpperCase();
 							lblNewLabel_1.setText(izena_datuak + " " + abizena_datuak);
 							queryUpdate = "UPDATE `bezero` SET `izena` = "+ izena_datuak +" WHERE `bezero`.`bkode` = "+gkode_datuak+";";
 							
@@ -436,7 +436,8 @@ public class Garraiatzaile extends JFrame {
 						}
 						
 						if (!textField_2.getText().equals(abizena_datuak) ){
-							tlf_datuak=textField_2.getText();
+							abizena_datuak=textField_2.getText();
+							abizena_datuak=abizena_datuak.toUpperCase();
 							lblNewLabel_1.setText(izena_datuak + " " + abizena_datuak);
 							queryUpdate = "UPDATE `bezero` SET `helbide` = "+ abizena_datuak +" WHERE `bezero`.`bkode` = "+gkode_datuak+";";
 							
@@ -460,8 +461,8 @@ public class Garraiatzaile extends JFrame {
 						}
 						
 						if (!textField_4.getText().equals(gune_datuak) ){
-							tlf_datuak=textField_4.getText();
-							lblNewLabel_4.setText(gune_datuak);
+							gune_datuak=textField_4.getText();
+							lblNewLabel_4.setText("GUNE: "+gune_datuak);
 							queryUpdate = "UPDATE `bezero` SET `gune` = "+ gune_datuak +" WHERE `bezero`.`bkode` = "+gkode_datuak+";";
 							
 							try {
