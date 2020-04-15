@@ -1,27 +1,18 @@
 package aaaj;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.GridLayout;
 import javax.swing.JButton;
-import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 import java.awt.SystemColor;
 import java.awt.Toolkit;
-import java.awt.GridBagLayout;
-
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -33,14 +24,15 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
 public class Garraiatzaile extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static boolean panel1_0bool=false;
 	private static boolean panel1_1bool=false;
@@ -54,10 +46,12 @@ public class Garraiatzaile extends JFrame {
 	String gune_datuak="";
 	String tlf_datuak="";
 	String nan_datuak="";
+	
 	private DefaultTableModel modelo1;
-	private DefaultTableModel modelo2;
-	private DefaultTableModel modelo3;
-	private DefaultTableModel modelo4;
+	//private DefaultTableModel modelo2;
+	//private DefaultTableModel modelo3;
+	//private DefaultTableModel modelo4;
+	
 
 	/**
 	 * Launch the application.
@@ -277,6 +271,11 @@ public class Garraiatzaile extends JFrame {
 				ResultSet rs = stm.executeQuery("select * from produktu");
 				
 				DefaultTableModel modelo2 = new DefaultTableModel() {					
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
+
 					@Override
 				    public boolean isCellEditable(int row, int column) {
 				       //all cells false

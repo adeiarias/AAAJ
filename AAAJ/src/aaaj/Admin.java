@@ -1,30 +1,21 @@
 package aaaj;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-
-import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 import java.awt.SystemColor;
 import java.awt.Toolkit;
-import java.awt.GridBagLayout;
-
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -39,14 +30,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Font;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 public class Admin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static boolean panel1_0bool=false;
 	private static boolean panel1_1bool=false;
@@ -720,7 +711,6 @@ public class Admin extends JFrame {
 		JPanel panel1_7 = new JPanel();
 		JPanel panel1_7_1 = new JPanel();
 		panel1_7.add(panel1_7_1);
-		JPanel panel1_3_1 = new JPanel();
 		
 		panel1_7.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_7_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));

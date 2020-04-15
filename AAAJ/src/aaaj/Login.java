@@ -28,6 +28,11 @@ import java.awt.event.KeyAdapter;
 
 public class Login extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static String loginID = null;
 	
 	private JPanel panel;
@@ -214,6 +219,7 @@ public class Login extends JFrame {
 	}
 
 	
+	@SuppressWarnings("deprecation")
 	public void saiatuLogin() {
 		try {
 			Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);

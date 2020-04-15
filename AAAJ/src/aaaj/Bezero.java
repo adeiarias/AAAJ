@@ -1,36 +1,24 @@
 package aaaj;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.GridLayout;
 import java.awt.Insets;
-
 import javax.swing.JButton;
-import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
-
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.GridBagLayout;
-
-import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,20 +29,20 @@ import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 public class Bezero extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static boolean panel1_0bool=false;
 	private static boolean panel1_1bool=false;
 	private static boolean panel1_2bool=false;
 	private static boolean panel1_3bool=false;
-	private DefaultTableModel modelo0,modelo1;
+	private DefaultTableModel modelo1;
 	String izena_datuak="";
 	String bkode_datuak="";
 	String gune_datuak="";
@@ -389,6 +377,11 @@ public class Bezero extends JFrame {
 				ResultSet rs = stm.executeQuery("select * from produktu");
 				
 				DefaultTableModel modelo2 = new DefaultTableModel() {					
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
+
 					@Override
 				    public boolean isCellEditable(int row, int column) {
 				       //all cells false
