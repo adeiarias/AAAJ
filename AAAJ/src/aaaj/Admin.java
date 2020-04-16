@@ -750,7 +750,7 @@ public class Admin extends JFrame {
 		panel1_7.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_7_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewButton_7 = new JButton("BEZERO/GARRAIATZAILEEN INFORMAZIOA BISTARATU");
+		JButton btnNewButton_7 = new JButton("BEZERO/GARRAIATZAILEAREN INFORMAZIOA BISTARATU");
 		btnNewButton_7.setBackground(SystemColor.menu);
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
