@@ -36,11 +36,11 @@ import javax.swing.SwingConstants;
 
 public class Admin extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	Statement stm;
+	Connection konexioa;
+	private JPanel contentPane, panel,panel_1,panel_2,panel_3,panel1_0,panel1_0_1,panel1_1,panel1_1_1;
+	private JPanel panel1_2,panel1_2_1,panel1_3,panel1_4,panel1_4_1,panel1_5,panel1_5_1,panel1_6,panel1_7,panel1_7_1;
 	private static boolean panel1_0bool=false;
 	private static boolean panel1_1bool=false;
 	private static boolean panel1_2bool=false;
@@ -92,17 +92,29 @@ public class Admin extends JFrame {
 		
 		setLocationRelativeTo(null);
 		
-		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
-		Statement stm = konexioa.createStatement();
+		konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
+		stm = konexioa.createStatement();
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 1, 10, 10));
 		
+		ezkerrekoPanela();
+		aukera0();
+		aukera1();
+		aukera2();
+		aukera3();
+		aukera4();
+		aukera5();
+		aukera6();
+		aukera7();
 		
-		
-		JPanel panel1_0 = new JPanel();
-		JPanel panel1_0_1 = new JPanel();
+	}
+	
+	private void aukera0() {	
+		panel1_0 = new JPanel();
+		panel1_0_1 = new JPanel();
+	
 		
 		JButton btnNewButton_0 = new JButton("BEZERO/GARRAIATZAILEA GEHITU");
 		btnNewButton_0.setBackground(SystemColor.menu);
@@ -237,10 +249,12 @@ public class Admin extends JFrame {
 		});
 		panel.add(btnNewButton_0);
 		
+	}
+	
+	private void aukera1() {		
 		
-		
-		JPanel panel1_1 = new JPanel();
-		JPanel panel1_1_1 = new JPanel();
+		panel1_1 = new JPanel();
+		panel1_1_1 = new JPanel();
 		modelo1 = new DefaultTableModel();
 		JTable tabla1 = new JTable(modelo1);
 		panel1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -314,10 +328,12 @@ public class Admin extends JFrame {
 		});
 		panel.add(btnNewButton_1);
 		
+	}
+	
+	private void aukera2() {	
 		
-		
-		JPanel panel1_2 = new JPanel();
-		JPanel panel1_2_1 = new JPanel();
+		panel1_2 = new JPanel();
+		panel1_2_1 = new JPanel();
 		modelo2 = new DefaultTableModel();
 		JTable tabla2 = new JTable(modelo2);
 		panel1_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -390,9 +406,12 @@ public class Admin extends JFrame {
 		});
 		panel.add(btnNewButton_2);
 		
+	}
+	
+	
+	private void aukera3() {	
 		
-		
-		JPanel panel1_3 = new JPanel();
+		panel1_3 = new JPanel();
 		JButton btnNewButton_3 = new JButton("ENTREGATU BEHARREKO ESKAERA GUZTIAK IKUSI");
 		btnNewButton_3.setBackground(SystemColor.menu);
 		btnNewButton_3.addActionListener(new ActionListener() {
@@ -444,10 +463,13 @@ public class Admin extends JFrame {
 		});
 		panel.add(btnNewButton_3);
 		
+	}
+	
+	
+	private void aukera4() {	
 		
-		
-		JPanel panel1_4 = new JPanel();
-		JPanel panel1_4_1 = new JPanel();
+		panel1_4 = new JPanel();
+		panel1_4_1 = new JPanel();
 		panel1_4.add(panel1_4_1);
 		DefaultTableModel modelo1_4 = new DefaultTableModel();
 		JTable tabla1_4 = new JTable(modelo1_4);
@@ -587,10 +609,13 @@ public class Admin extends JFrame {
 		});
 		panel.add(btnNewButton_4);
 		
+	}
+	
+	
+	private void aukera5() {	
 		
-		
-		JPanel panel1_5 = new JPanel();
-		JPanel panel1_5_1 = new JPanel();
+		panel1_5 = new JPanel();
+		panel1_5_1 = new JPanel();
 		modelo5 = new DefaultTableModel();
 		JTable tabla5 = new JTable(modelo5);
 		panel1_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -662,8 +687,12 @@ public class Admin extends JFrame {
 			}
 		});
 		panel.add(btnNewButton_5);
+	
+	}
+	
+	private void aukera6() {	
 		
-		JPanel panel1_6 = new JPanel();
+		panel1_6 = new JPanel();
 		JButton btnNewButton_6 = new JButton("ESKAEREN HISTORIALA BISTARATU");
 		btnNewButton_6.setBackground(SystemColor.menu);
 		btnNewButton_6.addActionListener(new ActionListener() {
@@ -709,9 +738,13 @@ public class Admin extends JFrame {
 			}
 		});		
 		panel.add(btnNewButton_6);
+	
+	}
+	
+	private void aukera7() {	
 		
-		JPanel panel1_7 = new JPanel();
-		JPanel panel1_7_1 = new JPanel();
+		panel1_7 = new JPanel();
+		panel1_7_1 = new JPanel();
 		panel1_7.add(panel1_7_1);
 		
 		panel1_7.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -815,9 +848,12 @@ public class Admin extends JFrame {
 			}
 		});	
 		panel.add(btnNewButton_7);
+	
+	}
+	
+	private void ezkerrekoPanela() {	
 		
-		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.WEST);
 		panel_1.setLayout(new GridLayout(0, 1, 10, 0));
 		panel_1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5)); 
@@ -825,7 +861,7 @@ public class Admin extends JFrame {
 		JLabel lblNewLabel = new JLabel(new ImageIcon("res/avatar1.jpg"));
 		panel_1.add(lblNewLabel);
 		
-		JPanel panel_3 = new JPanel();
+		panel_3 = new JPanel();
 		panel_1.add(panel_3);
 		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -851,7 +887,7 @@ public class Admin extends JFrame {
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblNewLabel_5);
 		
-		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnNewButton_16 = new JButton(new ImageIcon("res/homesmall.png"));
@@ -887,9 +923,7 @@ public class Admin extends JFrame {
 		
 	}
 	
-	public void hasieratu1() throws SQLException {
-		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
-		Statement stm = konexioa.createStatement();
+	private void hasieratu1() throws SQLException {
 		ResultSet rs = stm.executeQuery("select eskaera.id,eskaera.entregatuta,bezero.bkode,bezero.gune,eskatu.pkode,eskatu.kantitate,produktu.izena,produktu.deskribapena from ((eskaera join bezero on eskaera.bkode=bezero.bkode) JOIN eskatu on eskaera.id=eskatu.id) JOIN produktu on eskatu.pkode=produktu.pkode where bezero.bkode=1;");
 		modelo1.setRowCount(0);
 		modelo1.setColumnCount(0);
@@ -916,9 +950,7 @@ public class Admin extends JFrame {
 		modelo1.addRow(fila);
 	}
 
-	public void hasieratu2() throws SQLException {
-		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
-		Statement stm = konexioa.createStatement();
+	private void hasieratu2() throws SQLException {
 		ResultSet rs = stm.executeQuery("select * from produktu");
 		modelo2.setRowCount(0);
 		modelo2.setColumnCount(0);
@@ -939,9 +971,7 @@ public class Admin extends JFrame {
 		modelo2.addRow(fila);
 	}
 	
-	public void hasieratu5() throws SQLException {
-		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
-		Statement stm = konexioa.createStatement();
+	private void hasieratu5() throws SQLException {
 		ResultSet rs = stm.executeQuery("select * from produktu");
 		modelo5.setRowCount(0);
 		modelo5.setColumnCount(0);

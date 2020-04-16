@@ -31,11 +31,11 @@ import java.awt.Font;
 
 public class Garraiatzaile extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	Connection konexioa;
+	Statement stm;
+	private JPanel contentPane,panel,panel_1,panel1_0,panel1_1,panel1_1_1,panel1_2;
+	private JPanel panel1_3,panel1_3_1,panel_2,panel_3;
 	private static boolean panel1_0bool=false;
 	private static boolean panel1_1bool=false;
 	private static boolean panel1_2bool=false;
@@ -50,14 +50,7 @@ public class Garraiatzaile extends JFrame {
 	String nan_datuak="";
 	
 	private DefaultTableModel modelo1;
-	//private DefaultTableModel modelo2;
-	//private DefaultTableModel modelo3;
-	//private DefaultTableModel modelo4;
-	
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -71,10 +64,6 @@ public class Garraiatzaile extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
 	public Garraiatzaile() throws SQLException {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("res/aj.png"));
@@ -89,36 +78,45 @@ public class Garraiatzaile extends JFrame {
 		
 		setLocationRelativeTo(null);
 		
-		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
-		Statement stm = konexioa.createStatement();
+		konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
+		stm = konexioa.createStatement();
 		
-	try {
-		//ResultSet rs = stm.executeQuery("select * from garraiatzaile where gkode=" + Login.loginID+";");
-		ResultSet rs = stm.executeQuery("select * from garraiatzaile where gkode=2;");
-		while (rs.next())
-		{
-			
-			gkode_datuak=rs.getString(1);
-			gune_datuak=rs.getString(2);
-			izena_datuak=rs.getString(3);
-			abizena_datuak=rs.getString(4);
-			tlf_datuak=rs.getString(5);
-			nan_datuak=rs.getString(6);
-		}
-		
-	}catch (SQLException e) {
-		// TODO Auto-generated catch block
-		JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
-	}
-			
-		
-		
-		
-		JPanel panel1_0 = new JPanel();
-		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 1, 10, 10));
+		
+		datuakHasieratu();
+		ezkerrekoPanela();
+		aukera0();
+		aukera1();
+		aukera2();
+		aukera3();
+	}
+	
+	private void datuakHasieratu() {	
+		try {
+			ResultSet rs = stm.executeQuery("select * from garraiatzaile where gkode=" + Login.loginID+";");
+			while (rs.next())
+			{
+			
+				gkode_datuak=rs.getString(1);
+				gune_datuak=rs.getString(2);
+				izena_datuak=rs.getString(3);
+				abizena_datuak=rs.getString(4);
+				tlf_datuak=rs.getString(5);
+				nan_datuak=rs.getString(6);
+			}
+			
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+		}
+				
+			
+	}
+	
+	private void aukera0() {		
+		
+		panel1_0 = new JPanel();
 		
 		JButton btnNewButton = new JButton("GUNEKO ESKAERAK IKUSI");
 		btnNewButton.setBackground(SystemColor.menu);
@@ -167,7 +165,6 @@ public class Garraiatzaile extends JFrame {
 				panel1_0.add(js0);
 				
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 				}
 				
@@ -177,9 +174,13 @@ public class Garraiatzaile extends JFrame {
 			}
 		});
 		panel.add(btnNewButton);
+	
+	}
+	
+	private void aukera1() {	
 		
-		JPanel panel1_1 = new JPanel();
-		JPanel panel1_1_1 = new JPanel();
+		panel1_1 = new JPanel();
+		panel1_1_1 = new JPanel();
 		modelo1 = new DefaultTableModel();
 		JTable tabla1 = new JTable(modelo1);
 		panel1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -196,7 +197,6 @@ public class Garraiatzaile extends JFrame {
 				try {
 					hasieratu1();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -239,7 +239,6 @@ public class Garraiatzaile extends JFrame {
 									modelo1.addRow(fila);
 									modelo1.addRow(fila);
 								} catch (SQLException e) {
-									// TODO Auto-generated catch block
 									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 								}
 							}
@@ -253,8 +252,12 @@ public class Garraiatzaile extends JFrame {
 			}
 		});
 		panel.add(btnNewButton_1);
+	
+	}
+	
+	private void aukera2() {	
 		
-		JPanel panel1_2 = new JPanel();
+		panel1_2 = new JPanel();
 		
 		JButton btnNewButton_2 = new JButton("ENTREGATUTAKO ESKAERAK");
 		btnNewButton_2.setBackground(SystemColor.menu);
@@ -311,7 +314,6 @@ public class Garraiatzaile extends JFrame {
 				panel1_2.add(js2);
 				
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 				}
 				
@@ -322,15 +324,20 @@ public class Garraiatzaile extends JFrame {
 		});
 		panel.add(btnNewButton_2);
 
-		JPanel panel1_3 = new JPanel();
-		JPanel panel1_3_1 = new JPanel();
+	}
+	
+	private void aukera3() {	
+		
+		panel1_3 = new JPanel();
+		panel1_3_1 = new JPanel();
 		
 		JButton btnNewButton_3 = new JButton("DATUAK ALDATU");
 		btnNewButton_3.setBackground(SystemColor.menu);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panel.setVisible(false);
-				panel1_3.setVisible(true);
+				panel1_3.setVisible(true); 
+				panel1_3_1.setVisible(true);
 							
 			if (!panel1_3bool) {
 				panel1_3.setBorder(new EmptyBorder(100, 100, 0, 100));
@@ -389,37 +396,11 @@ public class Garraiatzaile extends JFrame {
 				
 				JLabel lblesp_4 = new JLabel("");
 				lblesp_4.setPreferredSize(new Dimension(300, 10));
-				panel1_3_1.add(lblesp_4);
-				/*
-				//
-				
-				JLabel lbldatuak_5 = new JLabel("New label");
-				panel1_3_1.add(lbldatuak_5);
-				
-				JTextField textField_5 = new JTextField("tf 1");
-				textField_5.setColumns(25);
-				panel1_3_1.add(textField_5);
-				
-				JLabel lblesp_5 = new JLabel("");
-				lblesp_5.setPreferredSize(new Dimension(300, 10));
-				panel1_3_1.add(lblesp_5);
-				
-				//
-				
-				JLabel lbldatuak_6 = new JLabel("New label");
-				panel1_3_1.add(lbldatuak_6);
-				
-				JTextField textField_6 = new JTextField("tf 1");
-				textField_6.setColumns(25);
-				panel1_3_1.add(textField_6);
-				*/
-				
+				panel1_3_1.add(lblesp_4);		
 				
 				JButton btnAldatu = new JButton("ALDATU");
 				panel1_3_1.add(btnAldatu);
 				btnAldatu.addActionListener(new ActionListener() {
-					
-
 					public void actionPerformed(ActionEvent arg0) {
 						String queryUpdate="";
 						
@@ -427,7 +408,7 @@ public class Garraiatzaile extends JFrame {
 							izena_datuak=textField_1.getText();
 							izena_datuak=izena_datuak.toUpperCase();
 							lblNewLabel_1.setText(izena_datuak + " " + abizena_datuak);
-							queryUpdate = "UPDATE `bezero` SET `izena` = "+ izena_datuak +" WHERE `bezero`.`bkode` = "+gkode_datuak+";";
+							queryUpdate = "UPDATE `garraiatzaile` SET `izena` = '"+ izena_datuak +"' WHERE `garraiatzaile`.`gkode` = "+gkode_datuak+";";
 							
 							try {
 								stm.executeUpdate(queryUpdate);
@@ -440,7 +421,7 @@ public class Garraiatzaile extends JFrame {
 							abizena_datuak=textField_2.getText();
 							abizena_datuak=abizena_datuak.toUpperCase();
 							lblNewLabel_1.setText(izena_datuak + " " + abizena_datuak);
-							queryUpdate = "UPDATE `bezero` SET `helbide` = "+ abizena_datuak +" WHERE `bezero`.`bkode` = "+gkode_datuak+";";
+							queryUpdate = "UPDATE `garraiatzaile` SET `abizena` = '"+ abizena_datuak +"' WHERE `garraiatzaile`.`gkode` = "+gkode_datuak+";";
 							
 							try {
 								stm.executeUpdate(queryUpdate);
@@ -452,7 +433,7 @@ public class Garraiatzaile extends JFrame {
 						if (!textField_3.getText().equals(tlf_datuak) ){
 							tlf_datuak=textField_3.getText();
 							lblNewLabel_5.setText(tlf_datuak);
-							queryUpdate = "UPDATE `bezero` SET `tlf` = "+ tlf_datuak +" WHERE `bezero`.`bkode` = "+gkode_datuak+";";
+							queryUpdate = "UPDATE `garraiatzaile` SET `tlf` = "+ tlf_datuak +" WHERE `garraiatzaile`.`gkode` = "+gkode_datuak+";";
 							
 							try {
 								stm.executeUpdate(queryUpdate);
@@ -464,7 +445,7 @@ public class Garraiatzaile extends JFrame {
 						if (!textField_4.getText().equals(gune_datuak) ){
 							gune_datuak=textField_4.getText();
 							lblNewLabel_4.setText("GUNE: "+gune_datuak);
-							queryUpdate = "UPDATE `bezero` SET `gune` = "+ gune_datuak +" WHERE `bezero`.`bkode` = "+gkode_datuak+";";
+							queryUpdate = "UPDATE `garraiatzaile` SET `gune` = "+ gune_datuak +" WHERE `garraiatzaile`.`gkode` = "+gkode_datuak+";";
 							
 							try {
 								stm.executeUpdate(queryUpdate);
@@ -480,8 +461,11 @@ public class Garraiatzaile extends JFrame {
 		});
 		panel.add(btnNewButton_3);
 
+	}
+	
+	private void ezkerrekoPanela() {
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.WEST);
 		panel_1.setLayout(new GridLayout(0, 1, 10, 0));
 		panel_1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5)); 
@@ -489,13 +473,9 @@ public class Garraiatzaile extends JFrame {
 		JLabel lblNewLabel = new JLabel(new ImageIcon("res/avatar1.jpg"));
 		panel_1.add(lblNewLabel);
 		
-		JPanel panel_3 = new JPanel();
+		panel_3 = new JPanel();
 		panel_1.add(panel_3);
 		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
-			
-		
-		
-		
 		
 		// IZEN ABIZENAK
 		lblNewLabel_1 = new JLabel(izena_datuak + " " + abizena_datuak);			
@@ -524,7 +504,7 @@ public class Garraiatzaile extends JFrame {
 		panel_3.add(lblNewLabel_5);
 		
 		
-		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnNewButton_6 = new JButton(new ImageIcon("res/homesmall.png"));
@@ -532,9 +512,10 @@ public class Garraiatzaile extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				panel1_0.setVisible(false);
 				panel1_1.setVisible(false);
-				//panel1_2.setVisible(false);
+					panel1_1_1.setVisible(false);
+				panel1_2.setVisible(false);
 				panel1_3.setVisible(false);
-				//panel1_4.setVisible(false);
+					panel1_3_1.setVisible(false);
 				panel.setVisible(true);
 			}
 		});
@@ -550,7 +531,6 @@ public class Garraiatzaile extends JFrame {
 			}
 		});
 		panel_2.add(btnNewButton_7);
-		
 		
 	}
 	

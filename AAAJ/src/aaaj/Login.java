@@ -28,9 +28,6 @@ import java.awt.event.KeyAdapter;
 
 public class Login extends JFrame {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public static String loginID = null;
@@ -46,15 +43,11 @@ public class Login extends JFrame {
 	private JPanel panel_2;
 	private JLabel lblNewLabel;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Login frame = new Login();
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean sartzean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
@@ -63,11 +56,8 @@ public class Login extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 * @param konexioa 
-	 */
 	public Login() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("res/aj.png"));
 		initialize();

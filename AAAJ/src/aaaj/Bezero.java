@@ -35,11 +35,12 @@ import javax.swing.SwingConstants;
 
 public class Bezero extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	Connection konexioa;
+	Statement stm;
+	private JPanel contentPane,panel,panel_0,panel_0_4,panel_0_5,panel_0_6,panel_1,panel1_1,panel1_1_1,panel1_2;
+	private JPanel panel1_3,panel1_3_1,panel_2,panel_3;
+
 	private static boolean panel1_0bool=false;
 	private static boolean panel1_1bool=false;
 	private static boolean panel1_2bool=false;
@@ -55,11 +56,6 @@ public class Bezero extends JFrame {
 	private DefaultTableModel modelo_0;
 	private DefaultTableModel modelo0_1;
 	
-	
-
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -73,56 +69,55 @@ public class Bezero extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
 	public Bezero() throws SQLException {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("res/aj.png"));
-		
 		setTitle("BEZERO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		setLocationRelativeTo(null);
+		konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
+		stm = konexioa.createStatement();
 		
-		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
-		Statement stm = konexioa.createStatement();
-		
-		
-		
-	try {
-		ResultSet rs = stm.executeQuery("select * from bezero where bkode=" + Login.loginID+";");
-		while (rs.next())
-		{
-			
-			bkode_datuak=rs.getString(1);
-			gune_datuak=rs.getString(2);
-			izena_datuak=rs.getString(3);
-			helbidea_datuak=rs.getString(4);
-			tlf_datuak=rs.getString(5);
-			ifz_datuak=rs.getString(6);
-		}
-		
-	}catch (SQLException e) {
-		// TODO Auto-generated catch block
-		JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
-	}
-
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 1, 10, 10));
 		
-
-		/////////
+		datuakHasieratu();
+		ezkerrekoPanela();
+		aukera0();
+		aukera1();
+		aukera2();
+		aukera3();
+	
+}
+	
+	private void datuakHasieratu() {	
 		
-		JPanel panel_0 = new JPanel();
-		//contentPane.add(panel_0, BorderLayout.CENTER);
+		try {
+			ResultSet rs = stm.executeQuery("select * from bezero where bkode=" + Login.loginID+";");
+			while (rs.next()) {
+				bkode_datuak=rs.getString(1);
+				gune_datuak=rs.getString(2);
+				izena_datuak=rs.getString(3);
+				helbidea_datuak=rs.getString(4);
+				tlf_datuak=rs.getString(5);
+				ifz_datuak=rs.getString(6);
+			}
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+		}
+
+	}
+	
+	private void aukera0() {	
+		
+		panel_0 = new JPanel();
 		panel_0.setLayout(new GridLayout(0, 1, 10, 10));
 		
 		
@@ -140,7 +135,7 @@ public class Bezero extends JFrame {
 		};
 		JTable tabla = new JTable(modelo_0);
 		
-		JPanel panel_0_4 = new JPanel();
+		panel_0_4 = new JPanel();
 		panel_0_4.setBorder(new EmptyBorder(50, 100, 0, 100));
 		panel_0.add(panel_0_4);
 		panel_0_4.setLayout(new BorderLayout(0, 0));
@@ -159,7 +154,7 @@ public class Bezero extends JFrame {
 		};
 		JTable tabla0_1 = new JTable(modelo0_1);
 		
-		JPanel panel_0_5 = new JPanel();
+		panel_0_5 = new JPanel();
 		panel_0_4.add(panel_0_5, BorderLayout.WEST);
 		GridBagLayout gbl_panel_0_5 = new GridBagLayout();
 		gbl_panel_0_5.columnWidths = new int[]{0, 0};
@@ -180,7 +175,7 @@ public class Bezero extends JFrame {
 				try {
 					hasieratu0();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 
@@ -269,7 +264,7 @@ public class Bezero extends JFrame {
 					panel_0_5.add(btnNewButton_2, gbc_btnNewButton_2);
 					
 					
-					JPanel panel_0_6 = new JPanel();
+					panel_0_6 = new JPanel();
 					panel_0_4.add(panel_0_6, BorderLayout.EAST);
 					
 					panel_0_6.add(js0_1);
@@ -283,9 +278,13 @@ public class Bezero extends JFrame {
 			}
 		});
 		panel.add(btnNewButton);
+	
+	}
+	
+	private void aukera1() {	
 		
-		JPanel panel1_1 = new JPanel();
-		JPanel panel1_1_1 = new JPanel();
+		panel1_1 = new JPanel();
+		panel1_1_1 = new JPanel();
 		modelo1 = new DefaultTableModel();
 		JTable tabla1 = new JTable(modelo1);
 		panel1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -302,7 +301,7 @@ public class Bezero extends JFrame {
 				try {
 					hasieratu1();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 
@@ -345,7 +344,7 @@ public class Bezero extends JFrame {
 									modelo1.addRow(fila);
 									modelo1.addRow(fila);
 								} catch (SQLException e) {
-									// TODO Auto-generated catch block
+									
 									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 								}
 							}
@@ -358,9 +357,12 @@ public class Bezero extends JFrame {
 			}
 		});
 		panel.add(btnNewButton_1);
-		
+	
+	}
+	
+	private void aukera2() {	
 			
-		JPanel panel1_2 = new JPanel();
+		panel1_2 = new JPanel();
 		
 		JButton btnNewButton_2 = new JButton("KATALOGOA IKUSI");
 		btnNewButton_2.setBackground(SystemColor.menu);
@@ -417,7 +419,6 @@ public class Bezero extends JFrame {
 				panel1_2.add(js2);
 				
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 				}
 				
@@ -427,9 +428,13 @@ public class Bezero extends JFrame {
 			}
 		});
 		panel.add(btnNewButton_2);
+
+	}
+	
+	private void aukera3() {	
 		
-		JPanel panel1_3 = new JPanel();
-		JPanel panel1_3_1 = new JPanel();
+		panel1_3 = new JPanel();
+		panel1_3_1 = new JPanel();
 		
 		JButton btnNewButton_3 = new JButton("DATUAK ALDATU");
 		btnNewButton_3.setBackground(SystemColor.menu);
@@ -500,8 +505,6 @@ public class Bezero extends JFrame {
 				JButton btnAldatu = new JButton("ALDATU");
 				panel1_3_1.add(btnAldatu);
 				btnAldatu.addActionListener(new ActionListener() {
-					
-
 					public void actionPerformed(ActionEvent arg0) {
 						String queryUpdate="";
 						
@@ -509,7 +512,7 @@ public class Bezero extends JFrame {
 							izena_datuak=textField_1.getText();
 							izena_datuak=izena_datuak.toUpperCase();
 							lblNewLabel_1.setText(izena_datuak);
-							queryUpdate = "UPDATE `bezero` SET `izena` = "+ izena_datuak +" WHERE `bezero`.`bkode` = "+bkode_datuak+";";
+							queryUpdate = "UPDATE `bezero` SET `izena` = '"+ izena_datuak +"' WHERE `bezero`.`bkode` = "+bkode_datuak+";";
 							
 							try {
 								stm.executeUpdate(queryUpdate);
@@ -522,7 +525,7 @@ public class Bezero extends JFrame {
 							helbidea_datuak=textField_2.getText();
 							helbidea_datuak=helbidea_datuak.toUpperCase();
 							lblNewLabel_6.setText(helbidea_datuak);
-							queryUpdate = "UPDATE `bezero` SET `helbide` = "+ helbidea_datuak +" WHERE `bezero`.`bkode` = "+bkode_datuak+";";
+							queryUpdate = "UPDATE `bezero` SET `helbide` = '"+ helbidea_datuak +"' WHERE `bezero`.`bkode` = "+bkode_datuak+";";
 							
 							try {
 								stm.executeUpdate(queryUpdate);
@@ -562,8 +565,11 @@ public class Bezero extends JFrame {
 		});
 		panel.add(btnNewButton_3);
 		
+	}
+	
+	private void ezkerrekoPanela() {	
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.WEST);
 		panel_1.setLayout(new GridLayout(0, 1, 10, 0));
 		panel_1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5)); 
@@ -571,12 +577,9 @@ public class Bezero extends JFrame {
 		JLabel lblNewLabel = new JLabel(new ImageIcon("res/avatar1.jpg"));
 		panel_1.add(lblNewLabel);
 		
-		JPanel panel_3 = new JPanel();
+		panel_3 = new JPanel();
 		panel_1.add(panel_3);
 		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
-	
-		
-	
 		
 	// IZEN ABIZENAK
 	lblNewLabel_1 = new JLabel(izena_datuak);			
@@ -610,7 +613,7 @@ public class Bezero extends JFrame {
 	panel_3.add(lblNewLabel_5);
 		
 		
-		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnNewButton_6 = new JButton(new ImageIcon("res/homesmall.png"));
@@ -641,7 +644,7 @@ public class Bezero extends JFrame {
 		panel_2.add(btnNewButton_7);
 	}
 	
-	public void hasieratu0() throws SQLException {
+	private void hasieratu0() throws SQLException {
 		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
 		Statement stm = konexioa.createStatement();
 		
@@ -682,7 +685,7 @@ public class Bezero extends JFrame {
 		
 	}
 	
-	public void hasieratu1() throws SQLException {
+	private void hasieratu1() throws SQLException {
 		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
 		Statement stm = konexioa.createStatement();
 		ResultSet rs = stm.executeQuery("select eskaera.id,eskaera.entregatuta,bezero.bkode,bezero.gune,eskatu.pkode,eskatu.kantitate,produktu.izena,produktu.deskribapena from ((eskaera join bezero on eskaera.bkode=bezero.bkode) JOIN eskatu on eskaera.id=eskatu.id) JOIN produktu on eskatu.pkode=produktu.pkode where bezero.bkode=1;");
