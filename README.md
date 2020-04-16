@@ -1,4 +1,4 @@
-# AAAJ
+# 🛒 *AAAJ* 🚚
 
 >Datu baseak ikasgaieko proiektu finala datu base bat kudeatzen duen aplikazio bat diseinatzean datza. Gure kasuan, biltegi baten produktuak kudeatzen dituen programa bat sortzea erabaki dugu.
 
