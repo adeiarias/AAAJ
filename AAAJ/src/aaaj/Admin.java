@@ -476,7 +476,7 @@ public class Admin extends JFrame {
 		panel1_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_4_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewButton_4 = new JButton("ESKAERAK/BEZEROAK/GARRAIOLARIAK GUNEKA FILTRATU");
+		JButton btnNewButton_4 = new JButton("ESKAERAK/BEZEROAK/GARRAIATZAILEAK GUNEKA FILTRATU");
 		btnNewButton_4.setBackground(SystemColor.menu);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
