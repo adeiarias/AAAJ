@@ -347,6 +347,7 @@ public class Bezero extends JFrame {
 								textField_0_1.setText("");
 								JOptionPane.showMessageDialog(null, "Erosita!", "AAAJ",JOptionPane.DEFAULT_OPTION);
 								eskaeraid="";
+								eskaerabool=false;
 								modelo0_1.setRowCount(0);
 							}
 						}
