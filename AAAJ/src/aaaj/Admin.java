@@ -122,6 +122,7 @@ public class Admin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				panel.setVisible(false);
 				panel1_0.setVisible(true);
+				panel1_0_1.setVisible(true);
 							
 			if (!panel1_0bool) {
 				panel1_0.setBorder(new EmptyBorder(50, 100, 0, 100));
@@ -243,7 +244,7 @@ public class Admin extends JFrame {
 						
 					}
 				});
-				panel1_3bool=true;
+				panel1_0bool=true;
 			}
 			}
 		});
@@ -298,19 +299,22 @@ public class Admin extends JFrame {
 						btnNewButton_panel1_1.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
 								try {
+									String erabiltzaileID=textField_panel1_1.getText();
+									String query = "";
+									query = "DELETE FROM erabiltzaile WHERE erabkodea="+erabiltzaileID+";";
+									stm.executeUpdate(query);
+									
 									modelo1.setRowCount(0);
-								// FILTRAR:
-								
-									ResultSet rs = stm.executeQuery("select * from produktu WHERE prezioa>5");
+									ResultSet rs = stm.executeQuery("select * FROM erabiltzaile;");
 									modelo1.setRowCount(0);
 									while (rs.next())
 									{
-										Object [] fila = new Object[4]; // ALDATU ZUTABE KOP.REN ARABERA
-										for (int i=0;i<4;i++)// ALDATU ZUTABE KOP.REN ARABERA
+										Object [] fila = new Object[3]; // ALDATU ZUTABE KOP.REN ARABERA
+										for (int i=0;i<3;i++)
 											fila[i] = rs.getObject(i+1);
 										modelo1.addRow(fila);
 									}			
-									Object [] fila = new Object[4];
+									Object [] fila = new Object[3];
 									modelo1.addRow(fila);
 									modelo1.addRow(fila);
 								} catch (SQLException e) {
@@ -377,11 +381,12 @@ public class Admin extends JFrame {
 					btnNewButton_panel1_2.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
 								try {
+									String bezeroID=textField_panel1_2.getText();
+									String query = "";
+									query = "SELECT * FROM STOCK where bkode="+bezeroID+";";
+									
 									modelo2.setRowCount(0);
-								// FILTRAR:
-								
-									ResultSet rs = stm.executeQuery("select * from produktu WHERE prezioa>5");
-									modelo2.setRowCount(0);
+									ResultSet rs = stm.executeQuery(query);
 									while (rs.next())
 									{
 										Object [] fila = new Object[4]; // ALDATU ZUTABE KOP.REN ARABERA
@@ -924,28 +929,21 @@ public class Admin extends JFrame {
 	}
 	
 	private void hasieratu1() throws SQLException {
-		ResultSet rs = stm.executeQuery("select eskaera.id,eskaera.entregatuta,bezero.bkode,bezero.gune,eskatu.pkode,eskatu.kantitate,produktu.izena,produktu.deskribapena from ((eskaera join bezero on eskaera.bkode=bezero.bkode) JOIN eskatu on eskaera.id=eskatu.id) JOIN produktu on eskatu.pkode=produktu.pkode where bezero.bkode=1;");
+		ResultSet rs = stm.executeQuery("select * FROM erabiltzaile;");
 		modelo1.setRowCount(0);
 		modelo1.setColumnCount(0);
-		// ZUTABEAK SORTU
-		modelo1.addColumn("ID");
-		modelo1.addColumn("ENTREGATUTA");
-		modelo1.addColumn("BKODE");
-		modelo1.addColumn("BGUNE");
-		modelo1.addColumn("PKODE");
-		modelo1.addColumn("KANTITATE");
-		modelo1.addColumn("IZENA");
-		modelo1.addColumn("DESKR");
 
+		modelo1.addColumn("ERABILTZAILE KODEA");
+		modelo1.addColumn("DB-KO ERABILTZAILEA");
+		modelo1.addColumn("PASAHITZA");
 		while (rs.next())
 		{
-			Object [] fila = new Object[8]; // ALDATU ZUTABE KOP.REN ARABERA
-			for (int i=0;i<6;i++) {// ALDATU ZUTABE KOP.REN ARABERA
-					fila[i] = rs.getObject(i+1);
-					System.out.println(fila[i]);}
+			Object [] fila = new Object[3];
+			for (int i=0;i<3;i++) {
+					fila[i] = rs.getObject(i+1);}
 			modelo1.addRow(fila);
 		}			
-		Object [] fila = new Object[8];
+		Object [] fila = new Object[3];
 		modelo1.addRow(fila);
 		modelo1.addRow(fila);
 	}
