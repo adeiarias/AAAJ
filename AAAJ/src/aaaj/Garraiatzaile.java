@@ -51,6 +51,7 @@ public class Garraiatzaile extends JFrame {
 	String tlf_datuak="";
 	String nan_datuak="";
 	
+	JTable tabla1;
 	private DefaultTableModel modelo1;
 
 	public static void main(String[] args) {
@@ -123,7 +124,7 @@ public class Garraiatzaile extends JFrame {
 			
 	}
 	
-	private void aukera0() {		
+	private void aukera0() { //GUNEKO ESKAERAK IKUSI	
 		
 		panel1_0 = new JPanel();
 		
@@ -139,62 +140,75 @@ public class Garraiatzaile extends JFrame {
 				panel1_0.setLayout(new GridLayout(0, 1, 10, 10));
 				
 				if (!panel1_0bool) {
-				////////////////////////
-				try {
-				//ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.tlf from eskaera join bezero on eskaera.bkode=bezero.bkode where bezero.gune=" + gune_datuak + " AND entregatuta=false;");
-				ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.tlf from eskaera join bezero on eskaera.bkode=bezero.bkode where bezero.gune=-1 AND entregatuta=false;");
+					try {
+						ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.tlf,bezero.helbide from "
+						+ "eskaera join bezero on eskaera.bkode=bezero.bkode where bezero.gune=" + gune_datuak + " AND entregatuta=false;");
 				
-				DefaultTableModel modelo0 = new DefaultTableModel() {					
-					private static final long serialVersionUID = 1L;
-					@Override
-				    public boolean isCellEditable(int row, int column) {
-				       //all cells false
-				       return false;
-				    }
-				};
-				JTable tabla0 = new JTable(modelo0);
-				tabla0.getTableHeader().setReorderingAllowed(false);
-				// Creamos las columnas.
-				modelo0.addColumn("id");
-				modelo0.addColumn("bkode");
-				modelo0.addColumn("dendaizena");
-				modelo0.addColumn("tlf");
+						DefaultTableModel modelo0 = new DefaultTableModel() {					
+							private static final long serialVersionUID = 1L;
+							@Override
+							public boolean isCellEditable(int row, int column) {
+								return false;
+							}
+						};
+						JTable tabla0 = new JTable(modelo0);
+						tabla0.getTableHeader().setReorderingAllowed(false);
+		
+						modelo0.addColumn("ID");
+						modelo0.addColumn("BKODE");
+						modelo0.addColumn("DENDA IZENA");
+						modelo0.addColumn("TLF");
+						modelo0.addColumn("HELBIDEA");
+						
+						tabla0.getColumnModel().getColumn(0).setMinWidth(40);
+						tabla0.getColumnModel().getColumn(0).setMaxWidth(40);
+						tabla0.getColumnModel().getColumn(0).setPreferredWidth(40);
+						
+						tabla0.getColumnModel().getColumn(1).setMinWidth(56);
+						tabla0.getColumnModel().getColumn(1).setMaxWidth(56);
+						tabla0.getColumnModel().getColumn(1).setPreferredWidth(56);
+						
+						tabla0.getColumnModel().getColumn(2).setMinWidth(150);
+						tabla0.getColumnModel().getColumn(2).setMaxWidth(150);
+						tabla0.getColumnModel().getColumn(2).setPreferredWidth(150);
+						
+						tabla0.getColumnModel().getColumn(3).setMinWidth(75);
+						tabla0.getColumnModel().getColumn(3).setMaxWidth(75);
+						tabla0.getColumnModel().getColumn(3).setPreferredWidth(75);
 
-				// Bucle para cada resultado en la consulta
-				while (rs.next())
-				{
-				   // Se crea un array que será una de las filas de la tabla.
-				   Object [] fila = new Object[4]; // Hay n columnas en la tabla
-
-				   // Se rellena cada posición del array con una de las columnas de la tabla en base de datos.
-				   for (int i=0;i<4;i++)
-				      fila[i] = rs.getObject(i+1); // El primer indice en rs es el 1, no el cero, por eso se suma 1.
-
-				   // Se añade al modelo la fila completa.
-				   modelo0.addRow(fila);
-				}
-				
-				
-				
-				JScrollPane js0=new JScrollPane(tabla0);
-				
-				js0.setVisible(true);
-				panel1_0.add(js0);
-				
-				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
-				}
-				
-				////////////////////////
-				}
-				panel1_0bool=true;
+		
+						while (rs.next()){
+						   Object [] fila = new Object[5]; 
+						   for (int i=0;i<5;i++)
+						      fila[i] = rs.getObject(i+1);
+						   modelo0.addRow(fila);
+						}
+						
+						Object [] fila = new Object[5];
+						if (modelo0.getRowCount()>24) {
+							modelo0.addRow(fila);
+							modelo0.addRow(fila);
+						}
+	
+						JScrollPane js0=new JScrollPane(tabla0);
+						
+						js0.setVisible(true);
+						panel1_0.add(js0);
+					
+					} catch (SQLException e) {
+						JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+					}
+					
+					////////////////////////
+					}
+					panel1_0bool=true;
 			}
 		});
 		panel.add(btnNewButton);
 	
 	}
 	
-	private void aukera1() {	
+	private void aukera1() { //ESKAERA BAT ENTREGATU	
 		
 		panel1_1 = new JPanel();
 		panel1_1_1 = new JPanel();
@@ -206,7 +220,7 @@ public class Garraiatzaile extends JFrame {
 		       return false;
 		    }
 		};
-		JTable tabla1 = new JTable(modelo1);
+		tabla1 = new JTable(modelo1);
 		tabla1.getTableHeader().setReorderingAllowed(false);
 		panel1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -248,24 +262,10 @@ public class Garraiatzaile extends JFrame {
 					btnNewButton_panel1_1.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
 								try {
-									modelo1.setRowCount(0);
-								// FILTRAR:
-								
-									ResultSet rs = stm.executeQuery("select * from produktu WHERE prezioa>5");
-									modelo1.setRowCount(0);
-									while (rs.next())
-									{
-										Object [] fila = new Object[4]; // ALDATU ZUTABE KOP.REN ARABERA
-										for (int i=0;i<4;i++)// ALDATU ZUTABE KOP.REN ARABERA
-											fila[i] = rs.getObject(i+1);
-										modelo1.addRow(fila);
-									}			
-									Object [] fila = new Object[4];
-									modelo1.addRow(fila);
-									modelo1.addRow(fila);
-									
+									stm.executeUpdate("UPDATE `eskaera` SET `entregatuta` = true WHERE `eskaera`.`id` = "+textField_panel1_1.getText()+";");
+									stm.executeUpdate("UPDATE `eskaera` SET `gkode` = " + gkode_datuak + " WHERE `eskaera`.`id` = "+textField_panel1_1.getText()+";");
 									JOptionPane.showMessageDialog(null, "Entregatuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
-									
+									hasieratu1();
 								} catch (SQLException e) {
 									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 								}
@@ -283,7 +283,7 @@ public class Garraiatzaile extends JFrame {
 	
 	}
 	
-	private void aukera2() {	
+	private void aukera2() { //ENTREGATUTAKO ESKAERAK 	
 		
 		panel1_2 = new JPanel();
 		
@@ -297,56 +297,71 @@ public class Garraiatzaile extends JFrame {
 				
 				if (!panel1_2bool) {
 				
-				contentPane.add(panel1_2, BorderLayout.CENTER);
-				panel1_2.setLayout(new GridLayout(0, 1, 10, 10));
-				////////////////////////
-				try {
-				ResultSet rs = stm.executeQuery("select * from produktu");
-				
-				DefaultTableModel modelo2 = new DefaultTableModel() {					
-					/**
-					 * 
-					 */
-					private static final long serialVersionUID = 1L;
+					contentPane.add(panel1_2, BorderLayout.CENTER);
+					panel1_2.setLayout(new GridLayout(0, 1, 10, 10));
 
-					@Override
-				    public boolean isCellEditable(int row, int column) {
-				       //all cells false
-				       return false;
-				    }
-				};
-				
-				JTable tabla2 = new JTable(modelo2);
-				tabla2.getTableHeader().setReorderingAllowed(false);
-				modelo2.addColumn("id");
-				modelo2.addColumn("izena");
-				modelo2.addColumn("deskribapena");
-				modelo2.addColumn("kantitatea");
-				tabla2.getColumnModel().getColumn(0).setMinWidth(40);
-				tabla2.getColumnModel().getColumn(0).setMaxWidth(40);
-				tabla2.getColumnModel().getColumn(0).setPreferredWidth(40);
-				tabla2.getColumnModel().getColumn(3).setMinWidth(40);
-				tabla2.getColumnModel().getColumn(3).setMaxWidth(40);
-				tabla2.getColumnModel().getColumn(3).setPreferredWidth(40);
-				
-				while (rs.next())
-				{
-				   Object [] fila = new Object[4];
-				   for (int i=0;i<4;i++)
-				      fila[i] = rs.getObject(i+1);
-				   modelo2.addRow(fila);
-				}
-								
-				JScrollPane js2=new JScrollPane(tabla2);
-				
-				js2.setVisible(true);
-				panel1_2.add(js2);
-				
-				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
-				}
-				
-				////////////////////////
+					try {
+						ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.tlf,bezero.helbide from eskaera "
+								+ "join bezero on eskaera.bkode=bezero.bkode where eskaera.gkode=" + gkode_datuak + " AND eskaera.entregatuta='1';");
+						
+						DefaultTableModel modelo2 = new DefaultTableModel() {					
+							private static final long serialVersionUID = 1L;
+		
+							@Override
+						    public boolean isCellEditable(int row, int column) {
+						       //all cells false
+						       return false;
+						    }
+						};
+						
+						JTable tabla2 = new JTable(modelo2);
+						tabla2.getTableHeader().setReorderingAllowed(false);
+						
+						modelo2.addColumn("ID");
+						modelo2.addColumn("BKODE");
+						modelo2.addColumn("DENDA IZENA");
+						modelo2.addColumn("TLF");
+						modelo2.addColumn("HELBIDEA");
+						
+						tabla2.getColumnModel().getColumn(0).setMinWidth(40);
+						tabla2.getColumnModel().getColumn(0).setMaxWidth(40);
+						tabla2.getColumnModel().getColumn(0).setPreferredWidth(40);
+						
+						tabla2.getColumnModel().getColumn(1).setMinWidth(56);
+						tabla2.getColumnModel().getColumn(1).setMaxWidth(56);
+						tabla2.getColumnModel().getColumn(1).setPreferredWidth(56);
+						
+						tabla2.getColumnModel().getColumn(2).setMinWidth(150);
+						tabla2.getColumnModel().getColumn(2).setMaxWidth(150);
+						tabla2.getColumnModel().getColumn(2).setPreferredWidth(150);
+						
+						tabla2.getColumnModel().getColumn(3).setMinWidth(75);
+						tabla2.getColumnModel().getColumn(3).setMaxWidth(75);
+						tabla2.getColumnModel().getColumn(3).setPreferredWidth(75);
+						
+						while (rs.next())
+						{
+						   Object [] fila = new Object[5];
+						   for (int i=0;i<4;i++)
+						      fila[i] = rs.getObject(i+1);
+						   modelo2.addRow(fila);
+						}
+						
+						Object [] fila = new Object[5];
+						if (modelo2.getRowCount()>24) {
+							modelo2.addRow(fila);
+							modelo2.addRow(fila);
+						}
+										
+						JScrollPane js2=new JScrollPane(tabla2);
+						
+						js2.setVisible(true);
+						panel1_2.add(js2);
+					
+					} catch (SQLException e) {
+						JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+					}
+
 				}
 				panel1_2bool=true;
 			}
@@ -355,7 +370,7 @@ public class Garraiatzaile extends JFrame {
 
 	}
 	
-	private void aukera3() {	
+	private void aukera3() { //DATUAK ALDATU	
 		
 		panel1_3 = new JPanel();
 		panel1_3_1 = new JPanel();
@@ -572,26 +587,47 @@ public class Garraiatzaile extends JFrame {
 	}
 	
 	public void hasieratu1() throws SQLException {
-		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
-		Statement stm = konexioa.createStatement();
-		ResultSet rs = stm.executeQuery("select * from produktu");
+		ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.tlf,bezero.helbide from "
+				+ "eskaera join bezero on eskaera.bkode=bezero.bkode where bezero.gune=" + gune_datuak + " AND entregatuta=false;");
 		modelo1.setRowCount(0);
 		modelo1.setColumnCount(0);
-		// ZUTABEAK SORTU
-		modelo1.addColumn("ZUTABE1");
-		modelo1.addColumn("ZUTABE2");
-		modelo1.addColumn("ZUTABE3");
-		modelo1.addColumn("ZUTABE4 ETC");
+		
+		modelo1.addColumn("ID");
+		modelo1.addColumn("BKODE");
+		modelo1.addColumn("DENDA IZENA");
+		modelo1.addColumn("TLF");
+		modelo1.addColumn("HELBIDEA");
+		
+		tabla1.getColumnModel().getColumn(0).setMinWidth(40);
+		tabla1.getColumnModel().getColumn(0).setMaxWidth(40);
+		tabla1.getColumnModel().getColumn(0).setPreferredWidth(40);
+		
+		tabla1.getColumnModel().getColumn(1).setMinWidth(56);
+		tabla1.getColumnModel().getColumn(1).setMaxWidth(56);
+		tabla1.getColumnModel().getColumn(1).setPreferredWidth(56);
+		
+		tabla1.getColumnModel().getColumn(2).setMinWidth(100);
+		tabla1.getColumnModel().getColumn(2).setMaxWidth(100);
+		tabla1.getColumnModel().getColumn(2).setPreferredWidth(100);
+		
+		tabla1.getColumnModel().getColumn(3).setMinWidth(75);
+		tabla1.getColumnModel().getColumn(3).setMaxWidth(75);
+		tabla1.getColumnModel().getColumn(3).setPreferredWidth(75);
+		
+
 		while (rs.next())
 		{
-			Object [] fila = new Object[4]; // ALDATU ZUTABE KOP.REN ARABERA
-			for (int i=0;i<4;i++)// ALDATU ZUTABE KOP.REN ARABERA
+			Object [] fila = new Object[5]; // ALDATU ZUTABE KOP.REN ARABERA
+			for (int i=0;i<5;i++)// ALDATU ZUTABE KOP.REN ARABERA
 				fila[i] = rs.getObject(i+1);
 			modelo1.addRow(fila);
 		}			
-		Object [] fila = new Object[4];
-		modelo1.addRow(fila);
-		modelo1.addRow(fila);
+		Object [] fila = new Object[5];
+		if (modelo1.getRowCount()>24) {
+			modelo1.addRow(fila);
+			modelo1.addRow(fila);
+		}
+		
 	}
 
 }
