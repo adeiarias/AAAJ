@@ -42,6 +42,8 @@ public class Bezero extends JFrame {
 	private JPanel panel1_3,panel1_3_1,panel_2,panel_3;
 
 	private static boolean panel1_0bool=false;
+	private static boolean eskaerabool=false;
+	private static long eskaeraid=0;
 	private static boolean panel1_1bool=false;
 	private static boolean panel1_2bool=false;
 	private static boolean panel1_3bool=false;
@@ -141,17 +143,15 @@ public class Bezero extends JFrame {
 		panel_0_4.setLayout(new BorderLayout(0, 0));
 		
 		modelo0_1 = new DefaultTableModel(){					
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
-
 			@Override
 		    public boolean isCellEditable(int row, int column) {
 		       //all cells false
 		       return false;
 		    }
 		};
+		modelo0_1.addColumn("ID");
+		modelo0_1.addColumn("KANTITATE");
 		JTable tabla0_1 = new JTable(modelo0_1);
 		
 		panel_0_5 = new JPanel();
@@ -235,6 +235,41 @@ public class Bezero extends JFrame {
 					gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 					gbc_btnNewButton.gridx = 0;
 					gbc_btnNewButton.gridy = 4;
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							String queryUpdate="";
+							String produktuID=textField_0_0.getText();
+							String produktuKantitatea=textField_0_1.getText();
+							textField_0_0.setText("");
+							textField_0_1.setText("");
+							
+							if(!eskaerabool) {
+								try {
+									eskaeraid = System.currentTimeMillis() / 1000L;
+									queryUpdate = "INSERT INTO eskaera VALUES (" + eskaeraid + ", " + bkode_datuak + ", null, false);";
+									eskaerabool=true;
+									stm.executeUpdate(queryUpdate);		
+								} 
+								catch (SQLException e) {
+									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+								}
+								
+							}
+							// eskatu -> id, pkode, kantitate
+							queryUpdate = "INSERT INTO eskatu VALUES (" + eskaeraid + ", " + produktuID + ", "+ produktuKantitatea +");";
+							Object [] produktuagehitu = new Object [2];
+							produktuagehitu[0] = produktuID;
+							produktuagehitu[1] = produktuKantitatea;
+							modelo0_1.addRow(produktuagehitu);
+							
+							try {	
+								stm.executeUpdate(queryUpdate);		
+							} 
+							catch (SQLException e) {
+								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+							}
+						}
+					});
 					panel_0_5.add(btnNewButton, gbc_btnNewButton);
 					
 					JSeparator separator = new JSeparator();
@@ -255,12 +290,39 @@ public class Bezero extends JFrame {
 					GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 					gbc_btnNewButton_1.gridx = 0;
 					gbc_btnNewButton_1.gridy = 7;
+					btnNewButton_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							if (eskaeraid!=0) {
+								try {	
+									String queryUpdate = "delete from eskaera where id=" + eskaeraid + ";";
+									eskaeraid=0;
+									eskaerabool=false;
+									modelo0_1.setRowCount(0);
+									textField_0_0.setText("");
+									textField_0_1.setText("");
+									stm.executeUpdate(queryUpdate);		
+								} 
+								catch (SQLException e) {
+									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+								}
+							}
+						}
+					});
 					panel_0_5.add(btnNewButton_1, gbc_btnNewButton_1);
 					
 					JButton btnNewButton_2 = new JButton("EROSI");
 					GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 					gbc_btnNewButton_2.gridx = 0;
 					gbc_btnNewButton_2.gridy = 8;
+					btnNewButton_2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							if (eskaeraid!=0) {
+								JOptionPane.showMessageDialog(null, "Erosita!", "AAAJ",JOptionPane.DEFAULT_OPTION);
+								eskaeraid=0;
+								modelo0_1.setRowCount(0);
+							}
+						}
+					});
 					panel_0_5.add(btnNewButton_2, gbc_btnNewButton_2);
 					
 					
@@ -314,7 +376,7 @@ public class Bezero extends JFrame {
 						panel1_1_1.setBorder(new EmptyBorder(30, 0, 30, 0));
 						panel1_1.add(panel1_1_1);
 				
-						JLabel lblNewLabel_panel1_1 = new JLabel("Sartu entregatu nahi duzun eskaeraren IDa:   ");
+						JLabel lblNewLabel_panel1_1 = new JLabel("Sartu ezabatu nahi duzun eskaeraren IDa:   ");
 						panel1_1_1.add(lblNewLabel_panel1_1);
 				
 						JTextField textField_panel1_1 = new JTextField();
@@ -324,27 +386,17 @@ public class Bezero extends JFrame {
 						JLabel lblNewLabel_panel1_1_1 = new JLabel("   ");
 						panel1_1_1.add(lblNewLabel_panel1_1_1);
 		
-						JButton btnNewButton_panel1_1 = new JButton("ENTREGATU");
+						JButton btnNewButton_panel1_1 = new JButton("EZABATU");
 						btnNewButton_panel1_1.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
+								String eskaeraID=textField_panel1_1.getText();
 								try {
+									String queryUpdate="delete eskaera where id='"+eskaeraID+"';";
+									stm.executeUpdate(queryUpdate);
 									modelo1.setRowCount(0);
-								// FILTRAR:
-								
-									ResultSet rs = stm.executeQuery("select * from produktu WHERE prezioa>5");
-									modelo1.setRowCount(0);
-									while (rs.next())
-									{
-										Object [] fila = new Object[4]; // ALDATU ZUTABE KOP.REN ARABERA
-										for (int i=0;i<4;i++)// ALDATU ZUTABE KOP.REN ARABERA
-											fila[i] = rs.getObject(i+1);
-										modelo1.addRow(fila);
-									}			
-									Object [] fila = new Object[4];
-									modelo1.addRow(fila);
-									modelo1.addRow(fila);
+									modelo1.setColumnCount(0);
+									hasieratu1();
 								} catch (SQLException e) {
-									
 									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 								}
 							}
@@ -665,7 +717,7 @@ public class Bezero extends JFrame {
 		      fila[i] = rs.getObject(i+1);
 		   modelo_0.addRow(fila);
 		}
-		
+		/*
 		rs = stm.executeQuery("select * from produktu p where p.pkode<33000;");
 		
 		modelo0_1.setRowCount(0);
@@ -679,16 +731,15 @@ public class Bezero extends JFrame {
 		   Object [] fila = new Object[2];
 		   for (int i=0;i<2;i++)
 		      fila[i] = rs.getObject(i+1);
+		   Object [] fila = new Object[2];
 		   modelo0_1.addRow(fila);
 		}
-		
+		*/
 		
 	}
 	
 	private void hasieratu1() throws SQLException {
-		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
-		Statement stm = konexioa.createStatement();
-		ResultSet rs = stm.executeQuery("select eskaera.id,eskaera.entregatuta,bezero.bkode,bezero.gune,eskatu.pkode,eskatu.kantitate,produktu.izena,produktu.deskribapena from ((eskaera join bezero on eskaera.bkode=bezero.bkode) JOIN eskatu on eskaera.id=eskatu.id) JOIN produktu on eskatu.pkode=produktu.pkode where bezero.bkode=1;");
+		ResultSet rs = stm.executeQuery("select eskaera.id,eskaera.entregatuta,bezero.bkode,bezero.gune,eskatu.pkode,eskatu.kantitate,produktu.izena,produktu.deskribapena from ((eskaera join bezero on eskaera.bkode=bezero.bkode) JOIN eskatu on eskaera.id=eskatu.id) JOIN produktu on eskatu.pkode=produktu.pkode where bezero.bkode="+bkode_datuak+";");
 		modelo1.setRowCount(0);
 		modelo1.setColumnCount(0);
 		// ZUTABEAK SORTU
@@ -703,8 +754,8 @@ public class Bezero extends JFrame {
 
 		while (rs.next())
 		{
-			Object [] fila = new Object[8]; // ALDATU ZUTABE KOP.REN ARABERA
-			for (int i=0;i<6;i++) {// ALDATU ZUTABE KOP.REN ARABERA
+			Object [] fila = new Object[8];
+			for (int i=0;i<6;i++) {
 					fila[i] = rs.getObject(i+1);
 					System.out.println(fila[i]);}
 			modelo1.addRow(fila);
