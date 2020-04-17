@@ -274,6 +274,7 @@ public class Admin extends JFrame {
 		    }
 		};
 		JTable tabla1 = new JTable(modelo1);
+		tabla1.getTableHeader().setReorderingAllowed(false);
 		panel1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -363,6 +364,7 @@ public class Admin extends JFrame {
 		    }
 		};
 		JTable tabla2 = new JTable(modelo2);
+		tabla2.getTableHeader().setReorderingAllowed(false);
 		panel1_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_2_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -465,6 +467,7 @@ public class Admin extends JFrame {
 				    }
 				};
 				JTable tabla = new JTable(modelo);
+				tabla.getTableHeader().setReorderingAllowed(false);
 				modelo.addColumn("id");
 				modelo.addColumn("bkode");
 				modelo.addColumn("dendaizena");
@@ -515,6 +518,7 @@ public class Admin extends JFrame {
 		    }
 		};
 		JTable tabla1_4 = new JTable(modelo1_4);
+		tabla1_4.getTableHeader().setReorderingAllowed(false);
 		panel1_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_4_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -667,6 +671,7 @@ public class Admin extends JFrame {
 		    }
 		};
 		JTable tabla5 = new JTable(modelo5);
+		tabla5.getTableHeader().setReorderingAllowed(false);
 		panel1_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_5_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -767,6 +772,7 @@ public class Admin extends JFrame {
 						    }
 						};
 						JTable tabla6 = new JTable(modelo6);
+						tabla6.getTableHeader().setReorderingAllowed(false);
 						// ZUTABEAK SORTU
 						modelo6.addColumn("ZUTABE1");
 						modelo6.addColumn("ZUTABE2");

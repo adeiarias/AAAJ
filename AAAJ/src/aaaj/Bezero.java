@@ -50,6 +50,7 @@ public class Bezero extends JFrame {
 	private static boolean panel1_2bool=false;
 	private static boolean panel1_3bool=false;
 	private DefaultTableModel modelo1;
+	private JTable tabla1; 
 	String izena_datuak="";
 	String bkode_datuak="";
 	String gune_datuak="";
@@ -141,6 +142,7 @@ public class Bezero extends JFrame {
 		    }
 		};
 		JTable tabla = new JTable(modelo_0);
+		tabla.getTableHeader().setReorderingAllowed(false);
 		
 		panel_0_4 = new JPanel();
 		panel_0_4.setBorder(new EmptyBorder(50, 100, 0, 100));
@@ -158,6 +160,7 @@ public class Bezero extends JFrame {
 		modelo0_1.addColumn("ID");
 		modelo0_1.addColumn("KANTITATE");
 		JTable tabla0_1 = new JTable(modelo0_1);
+		tabla0_1.getTableHeader().setReorderingAllowed(false);
 		
 		panel_0_5 = new JPanel();
 		panel_0_4.add(panel_0_5, BorderLayout.WEST);
@@ -360,7 +363,8 @@ public class Bezero extends JFrame {
 		       return false;
 		    }
 		};
-		JTable tabla1 = new JTable(modelo1);
+		tabla1 = new JTable(modelo1);
+		tabla1.getTableHeader().setReorderingAllowed(false);
 		panel1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -454,6 +458,7 @@ public class Bezero extends JFrame {
 				};
 				
 				JTable tabla2 = new JTable(modelo2);
+				tabla2.getTableHeader().setReorderingAllowed(false);
 				modelo2.addColumn("id");
 				modelo2.addColumn("izena");
 				modelo2.addColumn("deskribapena");
@@ -759,6 +764,31 @@ public class Bezero extends JFrame {
 		modelo1.addColumn("KANTITATE");
 		modelo1.addColumn("IZENA");
 		modelo1.addColumn("DESKR");
+		
+
+		tabla1.getColumnModel().getColumn(0).setMinWidth(40);
+		tabla1.getColumnModel().getColumn(0).setMaxWidth(40);
+		tabla1.getColumnModel().getColumn(0).setPreferredWidth(40);
+		
+		tabla1.getColumnModel().getColumn(1).setMinWidth(30);
+		tabla1.getColumnModel().getColumn(1).setMaxWidth(30);
+		tabla1.getColumnModel().getColumn(1).setPreferredWidth(30);
+		
+		tabla1.getColumnModel().getColumn(2).setMinWidth(80);
+		tabla1.getColumnModel().getColumn(2).setMaxWidth(80);
+		tabla1.getColumnModel().getColumn(2).setPreferredWidth(80);
+		
+		tabla1.getColumnModel().getColumn(3).setMinWidth(40);
+		tabla1.getColumnModel().getColumn(3).setMaxWidth(40);
+		tabla1.getColumnModel().getColumn(3).setPreferredWidth(40);
+		
+		tabla1.getColumnModel().getColumn(4).setMinWidth(40);
+		tabla1.getColumnModel().getColumn(4).setMaxWidth(40);
+		tabla1.getColumnModel().getColumn(4).setPreferredWidth(40);
+		
+		tabla1.getColumnModel().getColumn(5).setMinWidth(30);
+		tabla1.getColumnModel().getColumn(5).setMaxWidth(30);
+		tabla1.getColumnModel().getColumn(5).setPreferredWidth(30);
 
 		while (rs.next())
 		{

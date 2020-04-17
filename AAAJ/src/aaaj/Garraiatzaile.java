@@ -153,6 +153,7 @@ public class Garraiatzaile extends JFrame {
 				    }
 				};
 				JTable tabla0 = new JTable(modelo0);
+				tabla0.getTableHeader().setReorderingAllowed(false);
 				// Creamos las columnas.
 				modelo0.addColumn("id");
 				modelo0.addColumn("bkode");
@@ -206,6 +207,7 @@ public class Garraiatzaile extends JFrame {
 		    }
 		};
 		JTable tabla1 = new JTable(modelo1);
+		tabla1.getTableHeader().setReorderingAllowed(false);
 		panel1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -312,6 +314,7 @@ public class Garraiatzaile extends JFrame {
 				};
 				
 				JTable tabla2 = new JTable(modelo2);
+				tabla2.getTableHeader().setReorderingAllowed(false);
 				modelo2.addColumn("id");
 				modelo2.addColumn("izena");
 				modelo2.addColumn("deskribapena");
