@@ -19,6 +19,8 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -76,6 +78,13 @@ public class Bezero extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("res/aj.png"));
 		setTitle("BEZERO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try { konexioa.close();	} catch (SQLException e1) {	e1.printStackTrace();	}
+                System.exit(0);
+            }
+        });
 		setBounds(100, 100, 800, 600);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -563,7 +572,7 @@ public class Bezero extends JFrame {
 							izena_datuak=textField_1.getText();
 							izena_datuak=izena_datuak.toUpperCase();
 							lblNewLabel_1.setText(izena_datuak);
-							queryUpdate = "UPDATE `bezero` SET `izena` = '"+ izena_datuak +"' WHERE `bezero`.`bkode` = "+bkode_datuak+";";
+							queryUpdate = "UPDATE `bezero` SET `dendaizena` = '"+ izena_datuak +"' WHERE `bezero`.`bkode` = "+bkode_datuak+";";
 							
 							try {
 								stm.executeUpdate(queryUpdate);
@@ -587,7 +596,7 @@ public class Bezero extends JFrame {
 						
 						if (!textField_3.getText().equals(tlf_datuak) ){
 							tlf_datuak=textField_3.getText();
-							lblNewLabel_5.setText(tlf_datuak);
+							lblNewLabel_5.setText("TLF: " + tlf_datuak);
 							queryUpdate = "UPDATE `bezero` SET `tlf` = "+ tlf_datuak +" WHERE `bezero`.`bkode` = "+bkode_datuak+";";
 							
 							try {
@@ -659,7 +668,7 @@ public class Bezero extends JFrame {
 	panel_3.add(lblNewLabel_4);
 	
 	// TLF
-	lblNewLabel_5 = new JLabel(tlf_datuak);
+	lblNewLabel_5 = new JLabel("TLF: " + tlf_datuak);
 	lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
 	panel_3.add(lblNewLabel_5);
 		
@@ -754,9 +763,8 @@ public class Bezero extends JFrame {
 		while (rs.next())
 		{
 			Object [] fila = new Object[8];
-			for (int i=0;i<6;i++) {
-					fila[i] = rs.getObject(i+1);
-					System.out.println(fila[i]);}
+			for (int i=0;i<8;i++) {
+					fila[i] = rs.getObject(i+1);}
 			modelo1.addRow(fila);
 		}			
 		Object [] fila = new Object[8];
