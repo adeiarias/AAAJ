@@ -256,7 +256,14 @@ public class Admin extends JFrame {
 		
 		panel1_1 = new JPanel();
 		panel1_1_1 = new JPanel();
-		modelo1 = new DefaultTableModel();
+		modelo1 = new DefaultTableModel() {					
+			private static final long serialVersionUID = 1L;
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+		       return false;
+		    }
+		};
 		JTable tabla1 = new JTable(modelo1);
 		panel1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -338,7 +345,14 @@ public class Admin extends JFrame {
 		
 		panel1_2 = new JPanel();
 		panel1_2_1 = new JPanel();
-		modelo2 = new DefaultTableModel();
+		modelo2 = new DefaultTableModel() {					
+			private static final long serialVersionUID = 1L;
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+		       return false;
+		    }
+		};
 		JTable tabla2 = new JTable(modelo2);
 		panel1_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_2_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -433,7 +447,14 @@ public class Admin extends JFrame {
 				try {
 				ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.tlf from eskaera join bezero on eskaera.bkode=bezero.bkode where entregatuta=false;");
 				
-				DefaultTableModel modelo = new DefaultTableModel();
+				DefaultTableModel modelo = new DefaultTableModel() {					
+					private static final long serialVersionUID = 1L;
+					@Override
+				    public boolean isCellEditable(int row, int column) {
+				       //all cells false
+				       return false;
+				    }
+				};
 				JTable tabla = new JTable(modelo);
 				modelo.addColumn("id");
 				modelo.addColumn("bkode");
@@ -476,7 +497,14 @@ public class Admin extends JFrame {
 		panel1_4 = new JPanel();
 		panel1_4_1 = new JPanel();
 		panel1_4.add(panel1_4_1);
-		DefaultTableModel modelo1_4 = new DefaultTableModel();
+		DefaultTableModel modelo1_4 = new DefaultTableModel() {					
+			private static final long serialVersionUID = 1L;
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+		       return false;
+		    }
+		};
 		JTable tabla1_4 = new JTable(modelo1_4);
 		panel1_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_4_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -621,7 +649,14 @@ public class Admin extends JFrame {
 		
 		panel1_5 = new JPanel();
 		panel1_5_1 = new JPanel();
-		modelo5 = new DefaultTableModel();
+		modelo5 = new DefaultTableModel() {					
+			private static final long serialVersionUID = 1L;
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+		       return false;
+		    }
+		};
 		JTable tabla5 = new JTable(modelo5);
 		panel1_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_5_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -714,7 +749,14 @@ public class Admin extends JFrame {
 						//ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.tlf from eskaera join bezero on eskaera.bkode=bezero.bkode where bezero.gune=" + gune_datuak + " AND entregatuta=false;");
 						ResultSet rs = stm.executeQuery("select * from produktu");
 				
-						DefaultTableModel modelo6 = new DefaultTableModel();
+						DefaultTableModel modelo6 = new DefaultTableModel() {					
+							private static final long serialVersionUID = 1L;
+							@Override
+						    public boolean isCellEditable(int row, int column) {
+						       //all cells false
+						       return false;
+						    }
+						};
 						JTable tabla6 = new JTable(modelo6);
 						// ZUTABEAK SORTU
 						modelo6.addColumn("ZUTABE1");

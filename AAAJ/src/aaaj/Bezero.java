@@ -124,11 +124,7 @@ public class Bezero extends JFrame {
 		
 		
 		modelo_0 = new DefaultTableModel() {					
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
-
 			@Override
 		    public boolean isCellEditable(int row, int column) {
 		       //all cells false
@@ -347,7 +343,14 @@ public class Bezero extends JFrame {
 		
 		panel1_1 = new JPanel();
 		panel1_1_1 = new JPanel();
-		modelo1 = new DefaultTableModel();
+		modelo1 = new DefaultTableModel() {					
+			private static final long serialVersionUID = 1L;
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+		       return false;
+		    }
+		};
 		JTable tabla1 = new JTable(modelo1);
 		panel1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel1_1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -433,11 +436,7 @@ public class Bezero extends JFrame {
 				ResultSet rs = stm.executeQuery("select * from produktu");
 				
 				DefaultTableModel modelo2 = new DefaultTableModel() {					
-					/**
-					 * 
-					 */
 					private static final long serialVersionUID = 1L;
-
 					@Override
 				    public boolean isCellEditable(int row, int column) {
 				       //all cells false
