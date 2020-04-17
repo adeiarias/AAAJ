@@ -273,6 +273,12 @@ public class Bezero extends JFrame {
 							produktuagehitu[1] = produktuKantitatea;
 							modelo0_1.addRow(produktuagehitu);
 							
+							Object [] fila = new Object[2];
+							if (modelo0_1.getRowCount()>24) {
+								modelo0_1.addRow(fila);
+								modelo0_1.addRow(fila);
+							}
+							
 							try {	
 								stm.executeUpdate(queryUpdate);		
 							} 
@@ -482,6 +488,12 @@ public class Bezero extends JFrame {
 				   for (int i=0;i<4;i++)
 				      fila[i] = rs.getObject(i+1);
 				   modelo2.addRow(fila);
+				}
+				
+				Object [] fila = new Object[4];
+				if (modelo2.getRowCount()>24) {
+					modelo2.addRow(fila);
+					modelo2.addRow(fila);
 				}
 								
 				JScrollPane js2=new JScrollPane(tabla2);
@@ -745,25 +757,12 @@ public class Bezero extends JFrame {
 		      fila[i] = rs.getObject(i+1);
 		   modelo_0.addRow(fila);
 		}
-		/*
-		rs = stm.executeQuery("select * from produktu p where p.pkode<33000;");
 		
-		modelo0_1.setRowCount(0);
-		modelo0_1.setColumnCount(0);
-		
-		modelo0_1.addColumn("id");
-		modelo0_1.addColumn("izena");
-		
-		while (rs.next())
-		{
-		   Object [] fila = new Object[2];
-		   for (int i=0;i<2;i++)
-		      fila[i] = rs.getObject(i+1);
-		   Object [] fila = new Object[2];
-		   modelo0_1.addRow(fila);
-		}
-		*/
-		
+		Object [] fila = new Object[3];
+		if (modelo_0.getRowCount()>24) {
+			modelo_0.addRow(fila);
+			modelo_0.addRow(fila);
+		}		
 	}
 	
 	private void hasieratu1() throws SQLException {
@@ -813,8 +812,10 @@ public class Bezero extends JFrame {
 			modelo1.addRow(fila);
 		}			
 		Object [] fila = new Object[8];
-		modelo1.addRow(fila);
-		modelo1.addRow(fila);
+		if (modelo1.getRowCount()>24) {
+			modelo1.addRow(fila);
+			modelo1.addRow(fila);
+		}
 	}
 	
 	
