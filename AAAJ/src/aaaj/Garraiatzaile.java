@@ -461,7 +461,7 @@ public class Garraiatzaile extends JFrame {
 						
 						if (!textField_3.getText().equals(tlf_datuak) ){
 							tlf_datuak=textField_3.getText();
-							lblNewLabel_5.setText(tlf_datuak);
+							lblNewLabel_5.setText("TLF: " + tlf_datuak);
 							queryUpdate = "UPDATE `garraiatzaile` SET `tlf` = "+ tlf_datuak +" WHERE `garraiatzaile`.`gkode` = "+gkode_datuak+";";
 							
 							try {
@@ -529,7 +529,7 @@ public class Garraiatzaile extends JFrame {
 		panel_3.add(lblNewLabel_4);
 		
 		// TLF
-		lblNewLabel_5 = new JLabel(tlf_datuak);
+		lblNewLabel_5 = new JLabel("TLF: " + tlf_datuak);
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblNewLabel_5);
 		

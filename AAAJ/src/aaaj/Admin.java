@@ -143,6 +143,7 @@ public class Admin extends JFrame {
 				
 				JRadioButton rdbtn1_0 = new JRadioButton("Bezero");
 				JRadioButton rdbtn2_0 = new JRadioButton("Garraiatzaile");
+				rdbtn1_0.setSelected(true);
 				ButtonGroup buttonGroup = new ButtonGroup();
 				buttonGroup.add(rdbtn1_0);
 				buttonGroup.add(rdbtn2_0);
