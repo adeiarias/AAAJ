@@ -168,7 +168,7 @@ public class Login extends JFrame {
 	}
 	private JLabel getLblIzena() {
 		if (lblIzena == null) {
-			lblIzena = new JLabel("Izena");
+			lblIzena = new JLabel("Erabiltzailea");
 		}
 		return lblIzena;
 	}
