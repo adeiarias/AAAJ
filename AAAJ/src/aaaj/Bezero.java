@@ -44,7 +44,7 @@ public class Bezero extends JFrame {
 
 	private static boolean panel1_0bool=false;
 	private static boolean eskaerabool=false;
-	private static long eskaeraid=0;
+	private static String eskaeraid="";
 	private static boolean panel1_1bool=false;
 	private static boolean panel1_2bool=false;
 	private static boolean panel1_3bool=false;
@@ -251,8 +251,12 @@ public class Bezero extends JFrame {
 							textField_0_1.setText("");
 							
 							if(!eskaerabool) {
-								try {
-									eskaeraid = System.currentTimeMillis() / 1000L;
+								try {/*
+									ResultSet rsID = stm.executeQuery("select id from eskaera;");
+									rsID.last();*/
+									long unixTime = System.currentTimeMillis() / 1000L;
+									eskaeraid=Integer.toString((int)unixTime).substring(3);
+									
 									queryUpdate = "INSERT INTO eskaera VALUES (" + eskaeraid + ", " + bkode_datuak + ", null, false);";
 									eskaerabool=true;
 									stm.executeUpdate(queryUpdate);		
@@ -299,10 +303,10 @@ public class Bezero extends JFrame {
 					gbc_btnNewButton_1.gridy = 7;
 					btnNewButton_1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
-							if (eskaeraid!=0) {
+							if (!eskaeraid.equals("")) {
 								try {	
 									String queryUpdate = "delete from eskaera where id=" + eskaeraid + ";";
-									eskaeraid=0;
+									eskaeraid="";
 									eskaerabool=false;
 									modelo0_1.setRowCount(0);
 									textField_0_0.setText("");
@@ -323,11 +327,11 @@ public class Bezero extends JFrame {
 					gbc_btnNewButton_2.gridy = 8;
 					btnNewButton_2.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
-							if (eskaeraid!=0) {
+							if (!eskaeraid.equals("")) {
 								textField_0_0.setText("");
 								textField_0_1.setText("");
 								JOptionPane.showMessageDialog(null, "Erosita!", "AAAJ",JOptionPane.DEFAULT_OPTION);
-								eskaeraid=0;
+								eskaeraid="";
 								modelo0_1.setRowCount(0);
 							}
 						}
@@ -777,17 +781,17 @@ public class Bezero extends JFrame {
 		modelo1.addColumn("DESKR");
 		
 
-		tabla1.getColumnModel().getColumn(0).setMinWidth(40);
-		tabla1.getColumnModel().getColumn(0).setMaxWidth(40);
-		tabla1.getColumnModel().getColumn(0).setPreferredWidth(40);
+		tabla1.getColumnModel().getColumn(0).setMinWidth(56);
+		tabla1.getColumnModel().getColumn(0).setMaxWidth(56);
+		tabla1.getColumnModel().getColumn(0).setPreferredWidth(56);
 		
 		tabla1.getColumnModel().getColumn(1).setMinWidth(30);
 		tabla1.getColumnModel().getColumn(1).setMaxWidth(30);
 		tabla1.getColumnModel().getColumn(1).setPreferredWidth(30);
 		
-		tabla1.getColumnModel().getColumn(2).setMinWidth(80);
-		tabla1.getColumnModel().getColumn(2).setMaxWidth(80);
-		tabla1.getColumnModel().getColumn(2).setPreferredWidth(80);
+		tabla1.getColumnModel().getColumn(2).setMinWidth(56);
+		tabla1.getColumnModel().getColumn(2).setMaxWidth(56);
+		tabla1.getColumnModel().getColumn(2).setPreferredWidth(56);
 		
 		tabla1.getColumnModel().getColumn(3).setMinWidth(40);
 		tabla1.getColumnModel().getColumn(3).setMaxWidth(40);
