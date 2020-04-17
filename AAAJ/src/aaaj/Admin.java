@@ -800,7 +800,9 @@ public class Admin extends JFrame {
 				if (!panel1_6bool) {
 					try {
 						//ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.tlf from eskaera join bezero on eskaera.bkode=bezero.bkode where bezero.gune=" + gune_datuak + " AND entregatuta=false;");
-						ResultSet rs = stm.executeQuery("select * from produktu");
+						ResultSet rs = stm.executeQuery("SELECT eskaera.id,bezero.bkode,bezero.dendaizena,eskatu.pkode,produktu.izena,produktu.deskribapena,"
+								+ "eskatu.kantitate,eskaera.entregatuta FROM ((eskatu JOIN eskaera ON eskatu.id=eskaera.id) "
+								+ "JOIN produktu on eskatu.pkode=produktu.pkode) JOIN bezero on eskaera.bkode=bezero.bkode ");
 				
 						DefaultTableModel modelo6 = new DefaultTableModel() {					
 							private static final long serialVersionUID = 1L;
@@ -813,24 +815,45 @@ public class Admin extends JFrame {
 						JTable tabla6 = new JTable(modelo6);
 						tabla6.getTableHeader().setReorderingAllowed(false);
 						// ZUTABEAK SORTU
-						modelo6.addColumn("ZUTABE1");
-						modelo6.addColumn("ZUTABE2");
-						modelo6.addColumn("ZUTABE3");
-						modelo6.addColumn("ZUTABE4 ETC");
+						modelo6.addColumn("ID");
+						modelo6.addColumn("BKODE");
+						modelo6.addColumn("DENDA");
+						modelo6.addColumn("PKOD");
+						modelo6.addColumn("PROD.");
+						modelo6.addColumn("DESKRIB.");
+						modelo6.addColumn("KTE");
+						modelo6.addColumn("✓");
+						
+						tabla6.getColumnModel().getColumn(0).setMinWidth(56);
+						tabla6.getColumnModel().getColumn(0).setMaxWidth(56);
+						tabla6.getColumnModel().getColumn(0).setPreferredWidth(56);
+						
+						tabla6.getColumnModel().getColumn(1).setMinWidth(56);
+						tabla6.getColumnModel().getColumn(1).setMaxWidth(56);
+						tabla6.getColumnModel().getColumn(1).setPreferredWidth(56);
+						
+						tabla6.getColumnModel().getColumn(3).setMinWidth(40);
+						tabla6.getColumnModel().getColumn(3).setMaxWidth(40);
+						tabla6.getColumnModel().getColumn(3).setPreferredWidth(40);
+						
+						tabla6.getColumnModel().getColumn(6).setMinWidth(40);
+						tabla6.getColumnModel().getColumn(6).setMaxWidth(40);
+						tabla6.getColumnModel().getColumn(6).setPreferredWidth(40);
+						
+						tabla6.getColumnModel().getColumn(7).setMinWidth(40);
+						tabla6.getColumnModel().getColumn(7).setMaxWidth(40);
+						tabla6.getColumnModel().getColumn(7).setPreferredWidth(40);
+						
+
 
 						while (rs.next())
 						{
-							Object [] fila = new Object[4]; // ALDATU ZUTABE KOP.REN ARABERA
-							for (int i=0;i<4;i++)// ALDATU ZUTABE KOP.REN ARABERA
+							Object [] fila = new Object[8]; // ALDATU ZUTABE KOP.REN ARABERA
+							for (int i=0;i<8;i++)// ALDATU ZUTABE KOP.REN ARABERA
 									fila[i] = rs.getObject(i+1);
 							modelo6.addRow(fila);
 						}
 						
-						Object [] fila = new Object[4];
-						if (modelo6.getRowCount()>24) {
-							modelo6.addRow(fila);
-							modelo6.addRow(fila);
-						}
 						
 						JScrollPane js6=new JScrollPane(tabla6);
 				
@@ -1065,7 +1088,7 @@ public class Admin extends JFrame {
 	}
 
 	private void hasieratu2() throws SQLException {
-		ResultSet rs = stm.executeQuery("select * from bezero ORDER BY bezero.gune");
+		ResultSet rs = stm.executeQuery("select * from bezero ORDER BY bezero.gune;");
 		modelo2.setRowCount(0);
 		modelo2.setColumnCount(0);
 		// ZUTABEAK SORTU
