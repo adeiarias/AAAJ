@@ -228,21 +228,22 @@ public class Admin extends JFrame {
 					public void actionPerformed(ActionEvent arg0) {
 						String queryUpdate="";
 						long unixTime = System.currentTimeMillis() / 1000L;
+						String kod=Integer.toString((int)unixTime).substring(3);
 						String erabQ=textField_1.getText();
 						char[] value2char=pwfield.getPassword();
 						String passQ= new String(value2char);
 						
-						queryUpdate = "INSERT INTO erabiltzaile VALUES (" + unixTime + ", '" + erabQ + "', '" + passQ + "');";
+						queryUpdate = "INSERT INTO erabiltzaile VALUES (" + kod + ", '" + erabQ + "', '" + passQ + "');";
 						
 						try {	stm.executeUpdate(queryUpdate);		} catch (SQLException e) {JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);}
 						
 						String nanifz=textField_3.getText();
 						
 						if(rdbtn1_0.isSelected()) {
-							queryUpdate = "INSERT INTO bezero VALUES (" + unixTime + ", 9999, 'DENDAIZENA', 'HELBIDEA', 000000000, '"+nanifz+"');";
+							queryUpdate = "INSERT INTO bezero VALUES (" + kod + ", 9999, 'DENDAIZENA', 'HELBIDEA', 000000000, '"+nanifz+"');";
 						}
 						else{
-							queryUpdate = "INSERT INTO garraiatzaile VALUES (" + unixTime + ", 9999, 'IZENA', 'ABIZENA', 000000000, '"+nanifz+"');";
+							queryUpdate = "INSERT INTO garraiatzaile VALUES (" + kod + ", 9999, 'IZENA', 'ABIZENA', 000000000, '"+nanifz+"');";
 						}
 							
 						try {	stm.executeUpdate(queryUpdate);		} catch (SQLException e) {JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);}
@@ -250,6 +251,8 @@ public class Admin extends JFrame {
 						textField_1.setText("");
 						pwfield.setText("");
 						textField_3.setText("");
+						
+						JOptionPane.showMessageDialog(null, "Sortuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
 						
 					}
 				});
@@ -334,6 +337,10 @@ public class Admin extends JFrame {
 									Object [] fila = new Object[3];
 									modelo1.addRow(fila);
 									modelo1.addRow(fila);
+									
+									textField_panel1_1.setText("");
+									JOptionPane.showMessageDialog(null, "Ezabatuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
+									
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
@@ -974,6 +981,18 @@ public class Admin extends JFrame {
 		JButton btnNewButton_17 = new JButton(new ImageIcon("res/logoutsmall.png"));
 		btnNewButton_17.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				panel1_0=null;
+				panel1_0_1=null;
+				panel1_1=null;
+				panel1_2=null;
+				panel1_3=null;
+				panel1_4=null;
+				panel1_4_1=null;
+				panel1_5=null;
+				panel1_6=null;
+				panel1_7=null;
+				panel1_7_1=null;
+				panel=null;
 				Login.loginID="-1000";
 				Login loginLogout = new Login();
 				loginLogout.setVisible(true);

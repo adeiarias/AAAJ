@@ -263,6 +263,9 @@ public class Garraiatzaile extends JFrame {
 									Object [] fila = new Object[4];
 									modelo1.addRow(fila);
 									modelo1.addRow(fila);
+									
+									JOptionPane.showMessageDialog(null, "Entregatuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
+									
 								} catch (SQLException e) {
 									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 								}
@@ -479,6 +482,7 @@ public class Garraiatzaile extends JFrame {
 								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
+						JOptionPane.showMessageDialog(null, "Aldatuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
 					}
 				});
 				panel1_3bool=true;
@@ -550,6 +554,13 @@ public class Garraiatzaile extends JFrame {
 		JButton btnNewButton_7 = new JButton(new ImageIcon("res/logoutsmall.png"));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				panel1_0=null;
+				panel1_1=null;
+				panel1_1_1=null;
+				panel1_2=null;
+				panel1_3=null;
+				panel1_3_1=null;
+				panel=null;
 				Login.loginID="-1000";
 				Login loginLogout = new Login();
 				loginLogout.setVisible(true);

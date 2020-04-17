@@ -1,6 +1,5 @@
 package aaaj;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -60,7 +59,7 @@ public class Bezero extends JFrame {
 	JLabel lblNewLabel_1,lblNewLabel_2,lblNewLabel_3,lblNewLabel_4,lblNewLabel_5,lblNewLabel_6;
 	private DefaultTableModel modelo_0;
 	private DefaultTableModel modelo0_1;
-	
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -72,7 +71,7 @@ public class Bezero extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	public Bezero() throws SQLException {
 		setResizable(false);
@@ -325,6 +324,8 @@ public class Bezero extends JFrame {
 					btnNewButton_2.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 							if (eskaeraid!=0) {
+								textField_0_0.setText("");
+								textField_0_1.setText("");
 								JOptionPane.showMessageDialog(null, "Erosita!", "AAAJ",JOptionPane.DEFAULT_OPTION);
 								eskaeraid=0;
 								modelo0_1.setRowCount(0);
@@ -407,8 +408,9 @@ public class Bezero extends JFrame {
 							public void actionPerformed(ActionEvent arg0) {
 								String eskaeraID=textField_panel1_1.getText();
 								try {
-									String queryUpdate="delete eskaera where id='"+eskaeraID+"';";
+									String queryUpdate="delete from eskaera where id="+eskaeraID+";";
 									stm.executeUpdate(queryUpdate);
+									JOptionPane.showMessageDialog(null, "Eskaera ezeztatuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
 									modelo1.setRowCount(0);
 									modelo1.setColumnCount(0);
 									hasieratu1();
@@ -622,6 +624,7 @@ public class Bezero extends JFrame {
 								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 							}
 						}
+						JOptionPane.showMessageDialog(null, "Aldatuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
 					}
 				});
 				panel1_3bool=true;
@@ -699,6 +702,14 @@ public class Bezero extends JFrame {
 		JButton btnNewButton_7 = new JButton(new ImageIcon("res/logoutsmall.png"));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				panel_0=null;
+				panel_0_4=null;
+				panel_0_5=null;
+				panel1_1=null;
+				panel1_1_1=null;
+				panel1_2=null;
+				panel1_3=null;
+				panel=null;
 				Login.loginID="-1000";
 				Login loginLogout = new Login();
 				loginLogout.setVisible(true);
