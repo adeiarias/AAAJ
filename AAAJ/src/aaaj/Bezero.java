@@ -766,7 +766,9 @@ public class Bezero extends JFrame {
 	}
 	
 	private void hasieratu1() throws SQLException {
-		ResultSet rs = stm.executeQuery("select eskaera.id,eskaera.entregatuta,bezero.bkode,bezero.gune,eskatu.pkode,eskatu.kantitate,produktu.izena,produktu.deskribapena from ((eskaera join bezero on eskaera.bkode=bezero.bkode) JOIN eskatu on eskaera.id=eskatu.id) JOIN produktu on eskatu.pkode=produktu.pkode where bezero.bkode="+bkode_datuak+";");
+		ResultSet rs = stm.executeQuery("select eskaera.id,eskaera.entregatuta,bezero.bkode,bezero.gune,eskatu.pkode,eskatu.kantitate,"
+				+ "produktu.izena,produktu.deskribapena from ((eskaera join bezero on eskaera.bkode=bezero.bkode) JOIN eskatu on eskaera.id=eskatu.id) "
+				+ "JOIN produktu on eskatu.pkode=produktu.pkode where bezero.bkode="+bkode_datuak+";");
 		modelo1.setRowCount(0);
 		modelo1.setColumnCount(0);
 		// ZUTABEAK SORTU
