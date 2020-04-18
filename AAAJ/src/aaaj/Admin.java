@@ -221,10 +221,10 @@ public class Admin extends JFrame {
 						String nanifz=textField_3.getText();
 						
 						if(rdbtn1_0.isSelected()) {
-							queryUpdate = "INSERT INTO bezero VALUES (" + kod + ", 9999, 'DENDAIZENA', 'HELBIDEA', 000000000, '"+nanifz+"');";
+							queryUpdate = "INSERT INTO bezero VALUES (" + kod + ", 0, 'DENDAIZENA', 'HELBIDEA', 944444444, '"+nanifz+"');";
 						}
 						else{
-							queryUpdate = "INSERT INTO garraiatzaile VALUES (" + kod + ", 9999, 'IZENA', 'ABIZENA', 000000000, '"+nanifz+"');";
+							queryUpdate = "INSERT INTO garraiatzaile VALUES (" + kod + ", 0, 'IZENA', 'ABIZENA', 66666666, '"+nanifz+"');";
 						}
 							
 						try {	stm.executeUpdate(queryUpdate);		} catch (SQLException e) {JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);}
