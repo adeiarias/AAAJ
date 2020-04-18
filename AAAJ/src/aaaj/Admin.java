@@ -895,7 +895,7 @@ public class Admin extends JFrame {
 						panel1_6.add(js6);
 				
 					} catch (SQLException e) {
-						JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.","AAAJ", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 				panel1_6bool=true;
@@ -1177,6 +1177,14 @@ public class Admin extends JFrame {
 		JButton btnNewButton_17 = new JButton(new ImageIcon("res/logoutsmall.png"));
 		btnNewButton_17.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				panel1_0bool=false;
+				panel1_1bool=false;
+				panel1_2bool=false;
+				panel1_3bool=false;
+				panel1_4bool=false;
+				panel1_5bool=false;
+				panel1_6bool=false;
+				panel1_7bool=false;
 				panel1_0=null;
 				panel1_0_1=null;
 				panel1_1=null;

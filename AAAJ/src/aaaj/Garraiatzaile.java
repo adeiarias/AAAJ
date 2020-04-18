@@ -555,6 +555,10 @@ public class Garraiatzaile extends JFrame {
 		JButton btnNewButton_7 = new JButton(new ImageIcon("res/logoutsmall.png"));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				panel1_0bool=false;
+				panel1_1bool=false;
+				panel1_2bool=false;
+				panel1_3bool=false;
 				panel1_0=null;
 				panel1_1=null;
 				panel1_1_1=null;

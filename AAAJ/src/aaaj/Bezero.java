@@ -744,6 +744,10 @@ public class Bezero extends JFrame {
 				panel1_2=null;
 				panel1_3=null;
 				panel=null;
+				panel1_0bool=false;
+				panel1_1bool=false;
+				panel1_2bool=false;
+				panel1_3bool=false;
 				Login.loginID="-1000";
 				Login loginLogout = new Login();
 				loginLogout.setVisible(true);
