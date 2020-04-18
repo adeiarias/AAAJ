@@ -21,7 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,19 +58,6 @@ public class Bezero extends JFrame {
 	JLabel lblNewLabel_1,lblNewLabel_2,lblNewLabel_3,lblNewLabel_4,lblNewLabel_5,lblNewLabel_6;
 	private DefaultTableModel modelo_0;
 	private DefaultTableModel modelo0_1;
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Bezero frame = new Bezero();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});
-	}*/
 
 	public Bezero() throws SQLException {
 		setResizable(false);
@@ -100,8 +86,8 @@ public class Bezero extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
+		Nagusia nag=new Nagusia();
+		konexioa= nag.getKonexioa();
 		stm = konexioa.createStatement();
 		
 		panel = new JPanel();
@@ -762,14 +748,13 @@ public class Bezero extends JFrame {
 				Login loginLogout = new Login();
 				loginLogout.setVisible(true);
 				setVisible(false);
-				try {konexioa.close();} catch (SQLException e) {JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);}
+				//try {konexioa.close();} catch (SQLException e) {JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);}
 			}
 		});
 		panel_2.add(btnNewButton_7);
 	}
 	
 	private void hasieratu0() throws SQLException {
-		Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
 		Statement stm = konexioa.createStatement();
 		
 		ResultSet rs = stm.executeQuery("select * from produktu;");

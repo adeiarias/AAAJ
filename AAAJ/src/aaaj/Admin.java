@@ -1,6 +1,5 @@
 package aaaj;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -23,7 +22,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -60,26 +58,6 @@ public class Admin extends JFrame {
 	DefaultTableModel modelo6;
 	DefaultTableModel modelo7;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Admin frame = new Admin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
 	public Admin() throws SQLException {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("res/aj.png"));
@@ -100,8 +78,8 @@ public class Admin extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		setLocationRelativeTo(null);
-		
-		konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
+		Nagusia nag=new Nagusia();
+		konexioa= nag.getKonexioa();
 		stm = konexioa.createStatement();
 		
 		panel = new JPanel();
@@ -477,7 +455,7 @@ public class Admin extends JFrame {
 				
 				if (!panel1_3bool) {
 					try {
-						ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.helbidea,bezero.tlf from eskaera join bezero on eskaera.bkode=bezero.bkode where entregatuta=false;");
+						ResultSet rs = stm.executeQuery("select eskaera.id, bezero.bkode, bezero.dendaizena,bezero.helbide,bezero.tlf from eskaera join bezero on eskaera.bkode=bezero.bkode where eskaera.entregatuta=false;");
 						
 						DefaultTableModel modelo = new DefaultTableModel() {					
 							private static final long serialVersionUID = 1L;
@@ -493,6 +471,23 @@ public class Admin extends JFrame {
 						modelo.addColumn("DENDAIZENA");
 						modelo.addColumn("HELBIDEA");
 						modelo.addColumn("TLF");
+						
+
+						tabla.getColumnModel().getColumn(0).setMinWidth(60);
+						tabla.getColumnModel().getColumn(0).setMaxWidth(60);
+						tabla.getColumnModel().getColumn(0).setPreferredWidth(60);
+						
+						tabla.getColumnModel().getColumn(1).setMinWidth(60);
+						tabla.getColumnModel().getColumn(1).setMaxWidth(60);
+						tabla.getColumnModel().getColumn(1).setPreferredWidth(60);
+						
+						tabla.getColumnModel().getColumn(2).setMinWidth(135);
+						tabla.getColumnModel().getColumn(2).setMaxWidth(135);
+						tabla.getColumnModel().getColumn(2).setPreferredWidth(135);
+						
+						tabla.getColumnModel().getColumn(4).setMinWidth(80);
+						tabla.getColumnModel().getColumn(4).setMaxWidth(80);
+						tabla.getColumnModel().getColumn(4).setPreferredWidth(80);
 		
 						
 						while (rs.next())
@@ -1058,7 +1053,7 @@ public class Admin extends JFrame {
 				Login loginLogout = new Login();
 				loginLogout.setVisible(true);
 				setVisible(false);
-				try {konexioa.close();} catch (SQLException e) {JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);}
+				//try {konexioa.close();} catch (SQLException e) {JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);}
 			}
 		});
 		panel_2.add(btnNewButton_17);

@@ -1,6 +1,5 @@
 package aaaj;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -45,27 +44,15 @@ public class Login extends JFrame {
 	private JPanel panel_2;
 	private JLabel lblNewLabel;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean sartzean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});
-	}
-
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
             	try {
-            		Connection konexioa = DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
-                    konexioa.close();	
+            		Nagusia nag=new Nagusia();
+            		Connection konexioa= nag.getKonexioa();
+            		konexioa.close();	
                 } catch (SQLException e1) {	e1.printStackTrace(); }
                 System.exit(0);
             }

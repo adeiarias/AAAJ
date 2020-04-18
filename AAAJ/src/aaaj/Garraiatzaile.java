@@ -19,7 +19,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -54,19 +53,6 @@ public class Garraiatzaile extends JFrame {
 	JTable tabla1;
 	private DefaultTableModel modelo1;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Garraiatzaile frame = new Garraiatzaile();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});
-	}
-
 	public Garraiatzaile() throws SQLException {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("res/aj.png"));
@@ -88,7 +74,8 @@ public class Garraiatzaile extends JFrame {
 		
 		setLocationRelativeTo(null);
 		
-		konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
+		Nagusia nag=new Nagusia();
+		konexioa= nag.getKonexioa();
 		stm = konexioa.createStatement();
 		
 		panel = new JPanel();
