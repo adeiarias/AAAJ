@@ -239,7 +239,7 @@ public class Bezero extends JFrame {
 					gbc_btnNewButton.gridy = 4;
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
-							String queryUpdate="";
+							String query="";
 							String produktuID=textField_0_0.getText();
 							String produktuKantitatea=textField_0_1.getText();
 							textField_0_0.setText("");
@@ -252,30 +252,38 @@ public class Bezero extends JFrame {
 									long unixTime = System.currentTimeMillis() / 1000L;
 									eskaeraid=Integer.toString((int)unixTime).substring(3);
 									
-									queryUpdate = "INSERT INTO eskaera VALUES (" + eskaeraid + ", " + bkode_datuak + ", null, false);";
+									query = "INSERT INTO eskaera VALUES (" + eskaeraid + ", " + bkode_datuak + ", null, false);";
 									eskaerabool=true;
-									stm.executeUpdate(queryUpdate);		
+									stm.executeUpdate(query);		
 								} 
 								catch (SQLException e) {
 									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 								}
 								
 							}
-							// eskatu -> id, pkode, kantitate
-							queryUpdate = "INSERT INTO eskatu VALUES (" + eskaeraid + ", " + produktuID + ", "+ produktuKantitatea +");";
-							Object [] produktuagehitu = new Object [2];
-							produktuagehitu[0] = produktuID;
-							produktuagehitu[1] = produktuKantitatea;
-							modelo0_1.addRow(produktuagehitu);
-							
-							Object [] fila = new Object[2];
-							if (modelo0_1.getRowCount()>24) {
-								modelo0_1.addRow(fila);
-								modelo0_1.addRow(fila);
-							}
-							
-							try {	
-								stm.executeUpdate(queryUpdate);		
+							try {
+								ResultSet rs=stm.executeQuery("select eskatu.* from eskaera JOIN eskatu ON eskaera.id=eskatu.id where eskaera.id="+eskaeraid+" having eskatu.pkode="+produktuID+";");	
+								if(rs.next()) { // PRODUKTUA BADAGO ORGAN
+									for(int i=0; i<modelo0_1.getRowCount();i++) {
+										String s = (String) modelo0_1.getValueAt(i, 0);
+										if (s.equals(produktuID)) {
+											Integer s1 = new Integer((String)modelo0_1.getValueAt(i, 1));
+											Integer s2 = new Integer(produktuKantitatea);
+											Integer s3 = s1+s2;
+											query= "UPDATE `eskatu` SET `kantitate` = "+ (s3) +" WHERE `eskatu`.`id` = "+eskaeraid+" AND `eskatu`.`pkode` = "+produktuID+";";
+											modelo0_1.setValueAt(s3, i, 1);
+										}
+									}
+								}
+								else { // PRODUKTUA EZ DAGO ORGAN
+									query = "INSERT INTO eskatu VALUES (" + eskaeraid + ", " + produktuID + ", "+ produktuKantitatea +");";
+									stm.executeUpdate(query);
+									Object [] produktuagehitu = new Object [2];
+									produktuagehitu[0] = produktuID;
+									produktuagehitu[1] = produktuKantitatea;
+									modelo0_1.addRow(produktuagehitu);
+								}	
+									
 							} 
 							catch (SQLException e) {
 								JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);

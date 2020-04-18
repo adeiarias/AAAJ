@@ -248,10 +248,42 @@ public class Garraiatzaile extends JFrame {
 					btnNewButton_panel1_1.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
 								try {
-									stm.executeUpdate("UPDATE `eskaera` SET `entregatuta` = true WHERE `eskaera`.`id` = "+textField_panel1_1.getText()+";");
-									stm.executeUpdate("UPDATE `eskaera` SET `gkode` = " + gkode_datuak + " WHERE `eskaera`.`id` = "+textField_panel1_1.getText()+";");
-									JOptionPane.showMessageDialog(null, "Entregatuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
-									hasieratu1();
+									String entEskID = textField_panel1_1.getText();
+									Integer eskBkode;
+									ResultSet rs = stm.executeQuery("SELECT eskaera.bkode FROM eskatu JOIN eskaera ON eskatu.id=eskaera.id where eskatu.id="+entEskID+";");
+									if(rs.next()) { 
+										eskBkode = (Integer) rs.getObject(1);
+									
+	
+										stm.executeUpdate("UPDATE `eskaera` SET `entregatuta` = true WHERE `eskaera`.`id` = "+entEskID+";");
+										stm.executeUpdate("UPDATE `eskaera` SET `gkode` = " + gkode_datuak + " WHERE `eskaera`.`id` = "+entEskID+";");
+										Statement stm2 = konexioa.createStatement();
+										Statement stm3 = konexioa.createStatement();
+										ResultSet rs1 = stm.executeQuery("SELECT eskatu.pkode,eskatu.kantitate FROM eskatu where eskatu.id="+entEskID+";");
+										while (rs1.next()) { // RS1 = EROSKETAKO PRODUKTUEN LISTA
+											Integer stockpkode = (Integer) rs1.getObject(1); 	// LISTAKO PRODUKTUA
+											Integer stockkant = (Integer) rs1.getObject(2);	// PRODUKTUAREN KANTITATEA
+											
+											System.out.println("PKODE: "+stockpkode);
+											System.out.println("KANT: "+stockkant);
+											
+											ResultSet rs2 = stm2.executeQuery("SELECT * from stock where stock.bkode="+eskBkode+" having stock.pkode="+stockpkode+";");	// PRODUKTUA STOCKEAN DAGO?
+											
+											if(!rs2.next()) { // PRODUKTUA EZ DAGO
+												stm3.executeUpdate("INSERT INTO stock VALUES ("+eskBkode+","+stockpkode+","+stockkant+");");
+											}
+											else { // PRODUKTUA BADAGO
+												Integer badagoKant = (Integer)rs2.getObject(3); // kant BADAGO
+												Integer badagoPkode = (Integer)rs2.getObject(2); // pkde BADAGO
+												int stockUpd = badagoKant+stockkant;
+												stm3.executeUpdate("UPDATE stock SET kantitate="+stockUpd+" WHERE stock.pkode="+badagoPkode+" AND stock.bkode="+eskBkode+";");	
+											}
+										}
+										JOptionPane.showMessageDialog(null, "Entregatuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
+										hasieratu1();
+									} else {
+										JOptionPane.showMessageDialog(null, "Ez da aurkitu. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+									}
 								} catch (SQLException e) {
 									JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
 								}
@@ -309,9 +341,9 @@ public class Garraiatzaile extends JFrame {
 						modelo2.addColumn("TLF");
 						modelo2.addColumn("HELBIDEA");
 						
-						tabla2.getColumnModel().getColumn(0).setMinWidth(40);
-						tabla2.getColumnModel().getColumn(0).setMaxWidth(40);
-						tabla2.getColumnModel().getColumn(0).setPreferredWidth(40);
+						tabla2.getColumnModel().getColumn(0).setMinWidth(56);
+						tabla2.getColumnModel().getColumn(0).setMaxWidth(56);
+						tabla2.getColumnModel().getColumn(0).setPreferredWidth(56);
 						
 						tabla2.getColumnModel().getColumn(1).setMinWidth(56);
 						tabla2.getColumnModel().getColumn(1).setMaxWidth(56);
@@ -588,9 +620,9 @@ public class Garraiatzaile extends JFrame {
 		modelo1.addColumn("TLF");
 		modelo1.addColumn("HELBIDEA");
 		
-		tabla1.getColumnModel().getColumn(0).setMinWidth(40);
-		tabla1.getColumnModel().getColumn(0).setMaxWidth(40);
-		tabla1.getColumnModel().getColumn(0).setPreferredWidth(40);
+		tabla1.getColumnModel().getColumn(0).setMinWidth(56);
+		tabla1.getColumnModel().getColumn(0).setMaxWidth(56);
+		tabla1.getColumnModel().getColumn(0).setPreferredWidth(56);
 		
 		tabla1.getColumnModel().getColumn(1).setMinWidth(56);
 		tabla1.getColumnModel().getColumn(1).setMaxWidth(56);
