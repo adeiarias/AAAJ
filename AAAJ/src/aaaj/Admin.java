@@ -40,7 +40,7 @@ public class Admin extends JFrame {
 	Statement stm;
 	Connection konexioa;
 	private JPanel contentPane, panel,panel_1,panel_2,panel_3,panel1_0,panel1_0_1,panel1_1,panel1_1_1;
-	private JPanel panel1_2,panel1_2_1,panel1_3,panel1_4,panel1_4_1,panel1_5,panel1_5_1,panel1_6,panel1_7,panel1_7_1;
+	private JPanel panel1_2,panel1_2_1,panel1_3,panel1_4,panel1_4_1,panel1_5,panel1_5_1,panel1_6,panel1_7,panel1_7_1,panel1_8,panel1_8_1;
 	private static boolean panel1_0bool=false;
 	private static boolean panel1_1bool=false;
 	private static boolean panel1_2bool=false;
@@ -49,6 +49,7 @@ public class Admin extends JFrame {
 	private static boolean panel1_5bool=false;
 	private static boolean panel1_6bool=false;
 	private static boolean panel1_7bool=false;
+	private static boolean panel1_8bool=false;
 	JLabel lbldatuak_1,lbldatuak_2,lbldatuak_3,lbldatuak_4,lbldatuak_5,lbldatuak_6;
 	JTextField textField_1,textField_2,textField_3,textField_4,textField_5,textField_6;
 	DefaultTableModel modelo0;
@@ -59,6 +60,7 @@ public class Admin extends JFrame {
 	DefaultTableModel modelo5;
 	DefaultTableModel modelo6;
 	DefaultTableModel modelo7;
+	DefaultTableModel modelo8;
 
 	public Admin() throws SQLException {
 		setResizable(false);
@@ -97,6 +99,7 @@ public class Admin extends JFrame {
 		aukera5();
 		aukera6();
 		aukera7();
+		aukera8();
 		
 	}
 	
@@ -1099,6 +1102,138 @@ public class Admin extends JFrame {
 	
 	}
 	
+	
+	private void aukera8() {	//ESKAERAK/BEZEROAK/GARRAIATZAILEAK GUNEKA FILTRATU	
+	
+		panel1_8 = new JPanel();
+		panel1_8_1 = new JPanel();
+		panel1_8.add(panel1_8_1);
+		DefaultTableModel modelo1_8 = new DefaultTableModel() {					
+			private static final long serialVersionUID = 1L;
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       return false;
+		    }
+		};
+		JTable tabla1_8 = new JTable(modelo1_8);
+		tabla1_8.getTableHeader().setReorderingAllowed(false);
+		panel1_8.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel1_8_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JButton btnNewButton_8 = new JButton("ESKAERAK/BEZEROAK/GARRAIATZAILEAK GUNEKA ZENBATU");
+		btnNewButton_8.setBackground(SystemColor.menu);
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panel.setVisible(false);
+				panel1_8.setVisible(true);
+				contentPane.add(panel1_8, BorderLayout.CENTER);
+				panel1_8_1.setVisible(true);
+				modelo1_8.setRowCount(0);
+				modelo1_8.setColumnCount(0);
+	
+				if (!panel1_8bool) {
+											
+						JScrollPane js8=new JScrollPane(tabla1_8);
+						js8.setViewportBorder(new EmptyBorder(0, 0, -30, 0));
+						js8.setVisible(true);
+						
+						panel1_8_1.setBorder(new EmptyBorder(30, 0, 30, 0));
+						
+						JRadioButton rdbtn1 = new JRadioButton("Eskaera");
+						JRadioButton rdbtn2 = new JRadioButton("Bezero");
+						JRadioButton rdbtn3 = new JRadioButton("Garraiatzaile");
+						ButtonGroup buttonGroup = new ButtonGroup();
+						buttonGroup.add(rdbtn1);
+						buttonGroup.add(rdbtn2);
+						buttonGroup.add(rdbtn3);
+						panel1_8_1.add(rdbtn1);
+						panel1_8_1.add(rdbtn2);
+						panel1_8_1.add(rdbtn3);	
+	
+						JButton btnNewButton_panel1_8 = new JButton("BILATU KATEGORIAZ");
+						btnNewButton_panel1_8.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								if(rdbtn1.isSelected()) { // ESKAERA DA
+									try {
+										modelo1_8.setRowCount(0);
+										modelo1_8.setColumnCount(0);
+										Vector<String> zutabeak=new Vector<String>();
+										modelo1_8.setColumnCount(2);
+										zutabeak.add("GUNEA");
+										zutabeak.add("ZENBAT DENDA?");
+										modelo1_8.setColumnIdentifiers(zutabeak);
+										ResultSet rs = stm.executeQuery("select bezero.gune,COUNT(bezero.bkode) FROM bezero GROUP BY bezero.gune ORDER BY bezero.gune;");
+										while (rs.next())
+										{
+											Object [] fila = new Object[2];
+											for (int i=0;i<2;i++)
+												fila[i] = rs.getObject(i+1);
+											modelo1_8.addRow(fila);
+										}
+									} catch (SQLException e) {
+										JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+									}
+								}
+								else if(rdbtn2.isSelected()) {
+									try {
+										modelo1_8.setRowCount(0);
+										modelo1_8.setColumnCount(0);
+										Vector<String> zutabeak=new Vector<String>();
+										modelo1_8.setColumnCount(2);
+										zutabeak.add("GUNEA");
+										zutabeak.add("ZENBAT GARRAIATZAILE?");
+										modelo1_8.setColumnIdentifiers(zutabeak);
+										ResultSet rs = stm.executeQuery("select garraiatzaile.gune,COUNT(garraiatzaile.gkode) FROM garraiatzaile GROUP BY garraiatzaile.gune ORDER BY garraiatzaile.gune;");
+										while (rs.next())
+										{
+											Object [] fila = new Object[2];
+											for (int i=0;i<2;i++)
+												fila[i] = rs.getObject(i+1);
+											modelo1_8.addRow(fila);
+										}
+									} catch (SQLException e) {
+										JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+									}
+								}
+								else if(rdbtn3.isSelected()) {
+									try {
+										modelo1_8.setRowCount(0);
+										modelo1_8.setColumnCount(0);
+										Vector<String> zutabeak=new Vector<String>();
+										modelo1_8.setColumnCount(2);
+										zutabeak.add("GUNEA");
+										zutabeak.add("ZENBAT ESKAERA ENTREGATZEKE?");
+										modelo1_8.setColumnIdentifiers(zutabeak);
+										ResultSet rs = stm.executeQuery("select bezero.gune,COUNT(eskaera.id) FROM (bezero join eskaera on bezero.bkode=eskaera.bkode) GROUP BY bezero.gune ORDER BY bezero.gune;");
+										while (rs.next())
+										{
+											Object [] fila = new Object[2];
+											for (int i=0;i<2;i++)
+												fila[i] = rs.getObject(i+1);
+											modelo1_8.addRow(fila);
+										}
+									} catch (SQLException e) {
+										JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE);
+									}
+								}
+									
+								
+								
+									
+							}
+						});
+						panel1_8_1.add(btnNewButton_panel1_8);
+								
+						panel1_8.add(js8);	
+				}
+				panel1_8bool=true;
+			}
+		});
+		panel.add(btnNewButton_8);
+		
+}
+
+	
 	private void ezkerrekoPanela() {	
 		
 		panel_1 = new JPanel();
@@ -1169,6 +1304,8 @@ public class Admin extends JFrame {
 				panel1_6.setVisible(false);
 				panel1_7.setVisible(false);
 					panel1_7_1.setVisible(false);
+				panel1_8.setVisible(false);
+					panel1_8_1.setVisible(false);
 				panel.setVisible(true);
 			}
 		});
@@ -1185,6 +1322,7 @@ public class Admin extends JFrame {
 				panel1_5bool=false;
 				panel1_6bool=false;
 				panel1_7bool=false;
+				panel1_8bool=false;
 				panel1_0=null;
 				panel1_0_1=null;
 				panel1_1=null;
@@ -1196,6 +1334,8 @@ public class Admin extends JFrame {
 				panel1_6=null;
 				panel1_7=null;
 				panel1_7_1=null;
+				panel1_8=null;
+				panel1_8_1=null;
 				panel=null;
 				Login.loginID="-1000";
 				Login loginLogout = new Login();
