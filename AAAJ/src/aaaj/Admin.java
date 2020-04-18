@@ -570,8 +570,8 @@ public class Admin extends JFrame {
 						panel1_4_1.add(lblNewLabel_panel1_4_1);
 						
 						JRadioButton rdbtn1 = new JRadioButton("Eskaera");
-						JRadioButton rdbtn2 = new JRadioButton("Garraio");
-						JRadioButton rdbtn3 = new JRadioButton("Bezero");
+						JRadioButton rdbtn2 = new JRadioButton("Bezero");
+						JRadioButton rdbtn3 = new JRadioButton("Garraiatzaile");
 						ButtonGroup buttonGroup = new ButtonGroup();
 						buttonGroup.add(rdbtn1);
 						buttonGroup.add(rdbtn2);
@@ -589,7 +589,7 @@ public class Admin extends JFrame {
 										zutabeak.add("ID");
 										zutabeak.add("BKODE");
 										zutabeak.add("PKODE");
-										zutabeak.add("KANT");
+										zutabeak.add("✓");
 										modelo1_4.setColumnIdentifiers(zutabeak);
 										ResultSet rs = stm.executeQuery("select eskaera.* from eskaera join bezero on eskaera.bkode=bezero.bkode where bezero.gune="+textField_panel1_4.getText()+"");
 										while (rs.next())
@@ -614,12 +614,25 @@ public class Admin extends JFrame {
 										modelo1_4.setColumnCount(0);
 										Vector<String> zutabeak=new Vector<String>();
 										zutabeak.add("BKODE");
-										zutabeak.add("DENDA IZENA");
+										zutabeak.add("DENDA");
 										zutabeak.add("HELBIDEA");
 										zutabeak.add("TLF");
 										zutabeak.add("IFZ");
 										modelo1_4.setColumnIdentifiers(zutabeak);
-										ResultSet rs = stm.executeQuery("select * from bezero where gune="+textField_panel1_4.getText()+"");
+										
+										tabla1_4.getColumnModel().getColumn(0).setMinWidth(56);
+										tabla1_4.getColumnModel().getColumn(0).setMaxWidth(56);
+										tabla1_4.getColumnModel().getColumn(0).setPreferredWidth(56);
+										
+										tabla1_4.getColumnModel().getColumn(3).setMinWidth(72);
+										tabla1_4.getColumnModel().getColumn(3).setMaxWidth(72);
+										tabla1_4.getColumnModel().getColumn(3).setPreferredWidth(72);
+										
+										tabla1_4.getColumnModel().getColumn(4).setMinWidth(72);
+										tabla1_4.getColumnModel().getColumn(4).setMaxWidth(72);
+										tabla1_4.getColumnModel().getColumn(4).setPreferredWidth(72);
+										
+										ResultSet rs = stm.executeQuery("select bkode,dendaizena,helbide,tlf,ifz from bezero where gune="+textField_panel1_4.getText()+"");
 										while (rs.next())
 										{
 											Object [] fila = new Object[5]; // ALDATU ZUTABE KOP.REN ARABERA
@@ -646,7 +659,20 @@ public class Admin extends JFrame {
 										zutabeak.add("TLF");
 										zutabeak.add("NAN");
 										modelo1_4.setColumnIdentifiers(zutabeak);
-										ResultSet rs = stm.executeQuery("select * from garraiatzaile where gune="+textField_panel1_4.getText()+"");
+										
+										tabla1_4.getColumnModel().getColumn(0).setMinWidth(56);
+										tabla1_4.getColumnModel().getColumn(0).setMaxWidth(56);
+										tabla1_4.getColumnModel().getColumn(0).setPreferredWidth(56);
+										
+										tabla1_4.getColumnModel().getColumn(3).setMinWidth(72);
+										tabla1_4.getColumnModel().getColumn(3).setMaxWidth(72);
+										tabla1_4.getColumnModel().getColumn(3).setPreferredWidth(72);
+										
+										tabla1_4.getColumnModel().getColumn(4).setMinWidth(72);
+										tabla1_4.getColumnModel().getColumn(4).setMaxWidth(72);
+										tabla1_4.getColumnModel().getColumn(4).setPreferredWidth(72);
+										
+										ResultSet rs = stm.executeQuery("select gkode,izena,abizena,tlf,nan from garraiatzaile where gune="+textField_panel1_4.getText()+"");
 										while (rs.next())
 										{
 											Object [] fila = new Object[5]; // ALDATU ZUTABE KOP.REN ARABERA
@@ -746,13 +772,24 @@ public class Admin extends JFrame {
 									ResultSet rs = stm.executeQuery(query);
 									
 									modelo5.addColumn("BKODE");
-									modelo5.addColumn("DENDAIZENA");
+									modelo5.addColumn("DENDA");
 									modelo5.addColumn("PKODE");
-									modelo5.addColumn("IZENA");
-									modelo5.addColumn("DESKRIBAPENA");
-									modelo5.addColumn("KANTITATE");
+									modelo5.addColumn("PROD.");
+									modelo5.addColumn("DESKRIB.");
+									modelo5.addColumn("KTE");
 									
+									tabla5.getColumnModel().getColumn(0).setMinWidth(56);
+									tabla5.getColumnModel().getColumn(0).setMaxWidth(56);
+									tabla5.getColumnModel().getColumn(0).setPreferredWidth(56);
 									
+									tabla5.getColumnModel().getColumn(2).setMinWidth(40);
+									tabla5.getColumnModel().getColumn(2).setMaxWidth(40);
+									tabla5.getColumnModel().getColumn(2).setPreferredWidth(40);
+									
+									tabla5.getColumnModel().getColumn(5).setMinWidth(40);
+									tabla5.getColumnModel().getColumn(5).setMaxWidth(40);
+									tabla5.getColumnModel().getColumn(5).setPreferredWidth(40);
+																		
 									while (rs.next())
 									{
 										Object [] fila = new Object[6]; // ALDATU ZUTABE KOP.REN ARABERA
@@ -1104,21 +1141,22 @@ public class Admin extends JFrame {
 		JButton btnNewButton_16 = new JButton(new ImageIcon("res/homesmall.png"));
 		btnNewButton_16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				lbldatuak_1.setText("");
-				lbldatuak_2.setText("");
-				lbldatuak_3.setText("");
-				lbldatuak_4.setText("");
-				lbldatuak_5.setText("");
-				lbldatuak_6.setText("");
-
-				String [] fila = new String[6]; 
-				textField_1.setText(fila[2]);
-				textField_2.setText(fila[3]);
-				textField_3.setText(fila[0]);
-				textField_4.setText(fila[1]);
-				textField_5.setText(fila[5]);
-				textField_6.setText(fila[4]);
+				if(panel1_7bool) {
+					lbldatuak_1.setText("");
+					lbldatuak_2.setText("");
+					lbldatuak_3.setText("");
+					lbldatuak_4.setText("");
+					lbldatuak_5.setText("");
+					lbldatuak_6.setText("");
+	
+					String [] fila = new String[6]; 
+					textField_1.setText(fila[2]);
+					textField_2.setText(fila[3]);
+					textField_3.setText(fila[0]);
+					textField_4.setText(fila[1]);
+					textField_5.setText(fila[5]);
+					textField_6.setText(fila[4]);
+				}
 				
 				panel1_0.setVisible(false);
 					panel1_0_1.setVisible(false);
