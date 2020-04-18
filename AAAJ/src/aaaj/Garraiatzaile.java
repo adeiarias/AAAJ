@@ -520,15 +520,15 @@ public class Garraiatzaile extends JFrame {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblNewLabel_2);
 		
-		// NAN		
-		lblNewLabel_3 = new JLabel("NAN: " + nan_datuak);			
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_3.add(lblNewLabel_3);
-		
 		// GUNEA
 		lblNewLabel_4 = new JLabel("GUNE: " + gune_datuak);
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_3.add(lblNewLabel_4);
+		
+		// NAN		
+		lblNewLabel_3 = new JLabel("NAN: " + nan_datuak);			
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_3.add(lblNewLabel_3);
 		
 		// TLF
 		lblNewLabel_5 = new JLabel("TLF: " + tlf_datuak);

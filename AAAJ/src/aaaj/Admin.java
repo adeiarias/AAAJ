@@ -49,6 +49,8 @@ public class Admin extends JFrame {
 	private static boolean panel1_5bool=false;
 	private static boolean panel1_6bool=false;
 	private static boolean panel1_7bool=false;
+	JLabel lbldatuak_1,lbldatuak_2,lbldatuak_3,lbldatuak_4,lbldatuak_5,lbldatuak_6;
+	JTextField textField_1,textField_2,textField_3,textField_4,textField_5,textField_6;
 	DefaultTableModel modelo0;
 	DefaultTableModel modelo1;
 	DefaultTableModel modelo2;
@@ -899,56 +901,41 @@ public class Admin extends JFrame {
 
 					JLabel lblNewLabel_panel1_7_1 = new JLabel("   ");
 					panel1_7_1.add(lblNewLabel_panel1_7_1);
-						
-
+					
 					JButton btnNewButton_panel1_7 = new JButton("BILATU");
-					btnNewButton_panel1_7.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-							/*
-							buscar ID
-							if bezero: poner los nombres de columna de bezero (setText)
-							else: poner los nombres de columna de garraio (setText)
-							*/
-						}
-					});
-					panel1_7_1.add(btnNewButton_panel1_7);
-						
+					
+					//
+					
 					JLabel lblesp_0 = new JLabel("");
 					lblesp_0.setPreferredSize(new Dimension(300, 10));
-					panel1_7_1.add(lblesp_0);
 					
-					JLabel lbldatuak_1 = new JLabel(" ");
-					panel1_7_1.add(lbldatuak_1);
+					lbldatuak_1 = new JLabel("‎      ‏‏‎");
 					
-					JTextField textField_1 = new JTextField();
+					textField_1 = new JTextField();
 					textField_1.setColumns(25);
-					panel1_7_1.add(textField_1);
+					textField_1.setEditable(false);
 					
 					JLabel lblesp_1 = new JLabel("");
 					lblesp_1.setPreferredSize(new Dimension(300, 10));
-					panel1_7_1.add(lblesp_1);
 					
 					//
 					
-					JLabel lbldatuak_2 = new JLabel(" ");
-					panel1_7_1.add(lbldatuak_2);
+					lbldatuak_2 = new JLabel("‎      ‏‏‎");					
 					
-					JTextField textField_2 = new JTextField();
-					textField_2.setColumns(25);
-					panel1_7_1.add(textField_2);
+					textField_2 = new JTextField();
+					textField_2.setColumns(25);		
+					textField_2.setEditable(false);
 					
 					JLabel lblesp_2 = new JLabel("");
-					lblesp_2.setPreferredSize(new Dimension(300, 10));
-					panel1_7_1.add(lblesp_2);
+					lblesp_2.setPreferredSize(new Dimension(300, 10));					
 					
 					//
 					
-					JLabel lbldatuak_3 = new JLabel(" ");
-					panel1_7_1.add(lbldatuak_3);
+					lbldatuak_3 = new JLabel("‎      ‏‏‎");					
 					
-					JTextField textField_3 = new JTextField();
+					textField_3 = new JTextField();
 					textField_3.setColumns(25);
-					panel1_7_1.add(textField_3);
+					textField_3.setEditable(false);				
 					
 					JLabel lblesp_3 = new JLabel("");
 					lblesp_3.setPreferredSize(new Dimension(300, 10));
@@ -956,18 +943,117 @@ public class Admin extends JFrame {
 					
 					//
 					
-					JLabel lbldatuak_4 = new JLabel(" ");
-					panel1_7_1.add(lbldatuak_4);
+					lbldatuak_4 = new JLabel("‎      ‏‏‎");					
 					
-					JTextField textField_4 = new JTextField();
+					textField_4 = new JTextField();
 					textField_4.setColumns(25);
-					panel1_7_1.add(textField_4);
+					textField_4.setEditable(false);
 					
 					JLabel lblesp_4 = new JLabel("");
 					lblesp_4.setPreferredSize(new Dimension(300, 10));
-					panel1_7_1.add(lblesp_4);	
+					
+					//
+					
+					lbldatuak_5 = new JLabel("‎      ‏‏‎");					
+					
+					textField_5 = new JTextField();
+					textField_5.setColumns(25);	
+					textField_5.setEditable(false);
+					
+					JLabel lblesp_5 = new JLabel("");
+					lblesp_5.setPreferredSize(new Dimension(300, 10));
+					
+					
+					//
+					
+					lbldatuak_6 = new JLabel("‎      ‏‏‎");					
+					
+					textField_6 = new JTextField();
+					textField_6.setColumns(25);
+					textField_6.setEditable(false);
+					
+					JLabel lblesp_6 = new JLabel("");
+					lblesp_6.setPreferredSize(new Dimension(300, 10));	
 	
-						
+					//add
+					
+					panel1_7_1.add(btnNewButton_panel1_7);
+					
+					panel1_7_1.add(lblesp_0);
+					
+					panel1_7_1.add(lbldatuak_1);
+					panel1_7_1.add(textField_1);
+					panel1_7_1.add(lblesp_1);
+					
+					panel1_7_1.add(lbldatuak_2);
+					panel1_7_1.add(textField_2);
+					panel1_7_1.add(lblesp_2);
+					
+					panel1_7_1.add(lbldatuak_3);
+					panel1_7_1.add(textField_3);
+					panel1_7_1.add(lblesp_3);
+					
+					panel1_7_1.add(lbldatuak_4);
+					panel1_7_1.add(textField_4);
+					panel1_7_1.add(lblesp_4);					
+
+					panel1_7_1.add(lbldatuak_5);
+					panel1_7_1.add(textField_5);
+					panel1_7_1.add(lblesp_5);
+					
+					panel1_7_1.add(lbldatuak_6);
+					panel1_7_1.add(textField_6);
+					panel1_7_1.add(lblesp_6);
+					
+					btnNewButton_panel1_7.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							try {
+								String query="select * from bezero where bkode=" + textField_panel1_7.getText() + ";";
+								ResultSet rs = stm.executeQuery(query);
+								String [] fila = new String[6]; 
+								
+								if (rs.next()) { // BEZEROA BADA
+									textField_panel1_7.setText("");
+									for (int i=0;i<6;i++)
+											fila[i] = rs.getObject(i+1).toString();
+									lbldatuak_1.setText("DENDAREN IZENA");
+									lbldatuak_2.setText("HELBIDEA");
+									lbldatuak_3.setText("BKODE");
+									lbldatuak_4.setText("GUNEA");
+									lbldatuak_5.setText("IFZ");
+									lbldatuak_6.setText("TELEFONOA");
+									textField_1.setText(fila[2]);
+									textField_2.setText(fila[3]);
+									textField_3.setText(fila[0]);
+									textField_4.setText(fila[1]);
+									textField_5.setText(fila[5]);
+									textField_6.setText(fila[4]);			
+								}
+								else {
+									query="select * from garraiatzaile where gkode=" + textField_panel1_7.getText() + ";";
+									textField_panel1_7.setText("");
+									rs = stm.executeQuery(query);
+									if (rs.next()) { // GARRAIATZAILEA BADA
+										for (int i=0;i<6;i++)
+											fila[i] = rs.getObject(i+1).toString();
+										lbldatuak_1.setText("IZENA");
+										lbldatuak_2.setText("ABIZENA");
+										lbldatuak_3.setText("GKODE");
+										lbldatuak_4.setText("GUNEA");
+										lbldatuak_5.setText("NAN");
+										lbldatuak_6.setText("TELEFONOA");
+										textField_1.setText(fila[2]);
+										textField_2.setText(fila[3]);
+										textField_3.setText(fila[0]);
+										textField_4.setText(fila[1]);
+										textField_5.setText(fila[5]);
+										textField_6.setText(fila[4]);
+									}
+									else { JOptionPane.showMessageDialog(null, "Arazoa egon da IDa sartzean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE); }
+								}
+							} catch (SQLException e) { JOptionPane.showMessageDialog(null, "Arazoa egon da datu basean. Saiatu berriro.", "AAAJ", JOptionPane.WARNING_MESSAGE); }
+						}
+					});
 				}
 				panel1_7bool=true;
 			}
@@ -1018,6 +1104,22 @@ public class Admin extends JFrame {
 		JButton btnNewButton_16 = new JButton(new ImageIcon("res/homesmall.png"));
 		btnNewButton_16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				lbldatuak_1.setText("");
+				lbldatuak_2.setText("");
+				lbldatuak_3.setText("");
+				lbldatuak_4.setText("");
+				lbldatuak_5.setText("");
+				lbldatuak_6.setText("");
+
+				String [] fila = new String[6]; 
+				textField_1.setText(fila[2]);
+				textField_2.setText(fila[3]);
+				textField_3.setText(fila[0]);
+				textField_4.setText(fila[1]);
+				textField_5.setText(fila[5]);
+				textField_6.setText(fila[4]);
+				
 				panel1_0.setVisible(false);
 					panel1_0_1.setVisible(false);
 				panel1_1.setVisible(false);
