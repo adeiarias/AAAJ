@@ -422,7 +422,7 @@ public class Bezero extends JFrame {
 							public void actionPerformed(ActionEvent arg0) {
 								String eskaeraID=textField_panel1_1.getText();
 								try {
-									String queryUpdate="delete from eskaera where id="+eskaeraID+";";
+									String queryUpdate="delete from eskaera where id="+eskaeraID+" AND entregatuta=false;";
 									stm.executeUpdate(queryUpdate);
 									JOptionPane.showMessageDialog(null, "Eskaera ezeztatuta!", "AAAJ",JOptionPane.DEFAULT_OPTION);
 									modelo1.setRowCount(0);
@@ -797,7 +797,7 @@ public class Bezero extends JFrame {
 	private void hasieratu1() throws SQLException {
 		ResultSet rs = stm.executeQuery("select eskaera.id,eskaera.entregatuta,eskatu.pkode,eskatu.kantitate,"
 				+ "produktu.izena,produktu.deskribapena from ((eskaera join bezero on eskaera.bkode=bezero.bkode) JOIN eskatu on eskaera.id=eskatu.id) "
-				+ "JOIN produktu on eskatu.pkode=produktu.pkode where bezero.bkode="+bkode_datuak+";");
+				+ "JOIN produktu on eskatu.pkode=produktu.pkode where bezero.bkode="+bkode_datuak+" AND eskaera.entregatuta=false;");
 		modelo1.setRowCount(0);
 		modelo1.setColumnCount(0);
 		// ZUTABEAK SORTU
