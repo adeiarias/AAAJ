@@ -7,25 +7,26 @@ import java.sql.SQLException;
 
 public class Nagusia {
 	
-	static String zerbitzaria= "jdbc:mysql://remotemysql.com:3306/xyhHfhBzVD";
-	static String erabiltzailea= "xyhHfhBzVD"; // mysql
-	static String pasahitza= "czXUexDV1z"; // mysql
+	
 	private static Connection k;
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		setKonexioa();
+		String zerbitzaria= "jdbc:mysql://remotemysql.com:3306/xyhHfhBzVD";
+		String erabiltzailea= "xyhHfhBzVD"; // mysql
+		String pasahitza= "czXUexDV1z"; // mysql
+		setKonexioa(zerbitzaria,erabiltzailea,pasahitza);
 		//SISTEMAN SARTU
 		Login login = new Login();
 		login.setVisible(true);
 
 	}	
 	
-	public static void setKonexioa() throws SQLException {
-		k = DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
+	public static void setKonexioa(String zerbitzaria, String erabiltzailea, String pasahitza) throws SQLException {
+		k = DriverManager.getConnection(zerbitzaria, erabiltzailea, pasahitza);
 	}
 	
-	public Connection getKonexioa() {		
+	public static Connection getKonexioa() {		
 		return k;	
 	}
 

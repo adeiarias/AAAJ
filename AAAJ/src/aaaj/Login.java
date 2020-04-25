@@ -11,7 +11,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -50,8 +49,7 @@ public class Login extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
             	try {
-            		Nagusia nag=new Nagusia();
-            		Connection konexioa= nag.getKonexioa();
+            		Connection konexioa= Nagusia.getKonexioa();
             		konexioa.close();	
                 } catch (SQLException e1) {	e1.printStackTrace(); }
                 System.exit(0);
@@ -211,7 +209,7 @@ public class Login extends JFrame {
 	@SuppressWarnings("deprecation")
 	public void saiatuLogin() {
 		try {
-			Connection konexioa= DriverManager.getConnection(Nagusia.zerbitzaria, Nagusia.erabiltzailea, Nagusia.pasahitza);
+			Connection konexioa= Nagusia.getKonexioa();
 			Statement stm = konexioa.createStatement();
 			String loginerab = getTextField().getText();
 			String query="select password from erabiltzaile where user='" + loginerab +"';";

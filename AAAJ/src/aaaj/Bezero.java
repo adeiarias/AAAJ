@@ -86,8 +86,7 @@ public class Bezero extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		Nagusia nag=new Nagusia();
-		konexioa= nag.getKonexioa();
+		konexioa= Nagusia.getKonexioa();
 		stm = konexioa.createStatement();
 		
 		panel = new JPanel();

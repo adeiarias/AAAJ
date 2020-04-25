@@ -73,8 +73,7 @@ public class Garraiatzaile extends JFrame {
 		
 		setLocationRelativeTo(null);
 		
-		Nagusia nag=new Nagusia();
-		konexioa= nag.getKonexioa();
+		konexioa= Nagusia.getKonexioa();
 		stm = konexioa.createStatement();
 		
 		panel = new JPanel();

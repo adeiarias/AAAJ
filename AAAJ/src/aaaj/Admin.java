@@ -82,8 +82,7 @@ public class Admin extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		setLocationRelativeTo(null);
-		Nagusia nag=new Nagusia();
-		konexioa= nag.getKonexioa();
+		konexioa= Nagusia.getKonexioa();
 		stm = konexioa.createStatement();
 		
 		panel = new JPanel();
