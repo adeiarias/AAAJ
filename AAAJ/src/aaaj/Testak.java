@@ -66,14 +66,14 @@ public class Testak {
 	public void BezeroGarraiatzaileKendu() throws SQLException {
 		// BEZERO:
 		stm.executeUpdate("DELETE FROM erabiltzaile WHERE erabkodea = 1;");
-		stm.executeUpdate("DELETE FROM garraiatzaile WHERE bkode = 1;");
+		stm.executeUpdate("DELETE FROM bezero WHERE bkode = 1;");
 		rs = stm.executeQuery("SELECT * FROM bezero WHERE bkode = 1;");
 		assertFalse(rs.next());
 		
 		// GARRAIATZAILE:
-		stm.executeUpdate("DELETE FROM erabiltzaile WHERE erabkodea = 1;");
-		stm.executeUpdate("DELETE FROM garraiatzaile WHERE bkode = 1;");
-		rs = stm.executeQuery("SELECT * FROM bezero WHERE bkode = 1;");
+		stm.executeUpdate("DELETE FROM erabiltzaile WHERE erabkodea = 2;");
+		stm.executeUpdate("DELETE FROM garraiatzaile WHERE gkode = 2;");
+		rs = stm.executeQuery("SELECT * FROM garraiatzaile WHERE gkode = 2;");
 		assertFalse(rs.next());
 	}
 	
