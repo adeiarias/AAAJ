@@ -28,6 +28,7 @@ public class Testak {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		konexioa.close();
 	}
 
 	@Before
