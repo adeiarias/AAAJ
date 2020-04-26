@@ -1138,9 +1138,9 @@ public class Admin extends JFrame {
 						
 						panel1_8_1.setBorder(new EmptyBorder(30, 0, 30, 0));
 						
-						JRadioButton rdbtn1 = new JRadioButton("Eskaera");
-						JRadioButton rdbtn2 = new JRadioButton("Bezero");
-						JRadioButton rdbtn3 = new JRadioButton("Garraiatzaile");
+						JRadioButton rdbtn3 = new JRadioButton("Eskaera");
+						JRadioButton rdbtn1 = new JRadioButton("Bezero");
+						JRadioButton rdbtn2 = new JRadioButton("Garraiatzaile");
 						ButtonGroup buttonGroup = new ButtonGroup();
 						buttonGroup.add(rdbtn1);
 						buttonGroup.add(rdbtn2);
